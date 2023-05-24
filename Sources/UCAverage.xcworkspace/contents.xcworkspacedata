@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:UCAverageModel">
+   </FileRef>
+   <FileRef
       location = "group:UCAverageApp/UCAverageApp.xcodeproj">
    </FileRef>
 </Workspace>
