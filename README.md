@@ -1,5 +1,7 @@
 # iOS_TP2_2023_CalculetteMoyenne
 
+[![Build Status](https://codefirst.iut.uca.fr/api/badges/florent.marques/ucaverage-ios/status.svg?ref=refs/heads/main)](https://codefirst.iut.uca.fr/florent.marques/ucaverage-ios)
+
 _À rendre pour le dimanche 04 juin 2023 - 23h59_  
 _Rappel: les retards sont sanctionnés à raison de 1 point par heure commencée (par exemple, rendu à 2h23 le lundi 05 juin => -3 points_)
 
