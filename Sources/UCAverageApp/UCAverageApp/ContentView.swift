@@ -6,14 +6,16 @@
 //
 
 import SwiftUI
+import UCAverageModel
 
 struct ContentView: View {
     var body: some View {
+        let player = Player()
         VStack {
             Image(systemName: "globe")
                 .imageScale(.large)
                 .foregroundColor(.accentColor)
-            Text("Hello, world!")
+            Text(player.text)
         }
         .padding()
     }

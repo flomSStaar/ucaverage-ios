@@ -11,6 +11,7 @@
 		ECDA041F2A1EAF7E007B6A3B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECDA041E2A1EAF7E007B6A3B /* ContentView.swift */; };
 		ECDA04212A1EAF7E007B6A3B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECDA04202A1EAF7E007B6A3B /* Assets.xcassets */; };
 		ECDA04242A1EAF7E007B6A3B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECDA04232A1EAF7E007B6A3B /* Preview Assets.xcassets */; };
+		ECDA042C2A1EAFE2007B6A3B /* UCAverageModel in Frameworks */ = {isa = PBXBuildFile; productRef = ECDA042B2A1EAFE2007B6A3B /* UCAverageModel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ECDA042C2A1EAFE2007B6A3B /* UCAverageModel in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -37,6 +39,7 @@
 			children = (
 				ECDA041B2A1EAF7E007B6A3B /* UCAverageApp */,
 				ECDA041A2A1EAF7E007B6A3B /* Products */,
+				ECDA042A2A1EAFE2007B6A3B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -67,6 +70,13 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		ECDA042A2A1EAFE2007B6A3B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -83,6 +93,9 @@
 			dependencies = (
 			);
 			name = UCAverageApp;
+			packageProductDependencies = (
+				ECDA042B2A1EAFE2007B6A3B /* UCAverageModel */,
+			);
 			productName = UCAverageApp;
 			productReference = ECDA04192A1EAF7E007B6A3B /* UCAverageApp.app */;
 			productType = "com.apple.product-type.application";
@@ -337,6 +350,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		ECDA042B2A1EAFE2007B6A3B /* UCAverageModel */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = UCAverageModel;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = ECDA04112A1EAF7E007B6A3B /* Project object */;
 }
