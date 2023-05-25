@@ -12,7 +12,7 @@ import UCAverageModel
 struct UCAverageApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            HomePage()
         }
     }
 }

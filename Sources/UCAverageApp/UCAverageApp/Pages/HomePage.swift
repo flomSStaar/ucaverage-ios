@@ -8,7 +8,7 @@
 import SwiftUI
 import UCAverageModel
 
-struct ContentView: View {
+struct HomePage: View {
     var blocks: [Block] = loadBlocks()
     var ues: [UE] = loadUEs()
     
@@ -29,8 +29,8 @@ struct ContentView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct HomePage_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        HomePage()
     }
 }
