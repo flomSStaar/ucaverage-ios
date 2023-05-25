@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UCAverageModel
 
 @main
 struct UCAverageApp: App {

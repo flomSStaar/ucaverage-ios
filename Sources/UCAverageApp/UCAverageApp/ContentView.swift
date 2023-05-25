@@ -9,15 +9,23 @@ import SwiftUI
 import UCAverageModel
 
 struct ContentView: View {
+    var blocks: [Block] = loadBlocks()
+    var ues: [UE] = loadUEs()
+    
     var body: some View {
-        let player = Player()
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text(player.text)
+        NavigationStack {
+            ScrollView {
+                BlocksView(blocks: blocks)
+                    .padding(.horizontal, 10)
+                
+                Divider()
+                    .padding(.vertical, 10)
+                
+                UEListView(ues: ues)
+                    .padding(.horizontal, 10)
+            }
+            .navigationTitle("Calculette")
         }
-        .padding()
     }
 }
 

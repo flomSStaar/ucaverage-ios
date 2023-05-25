@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EC53AC322A1FA938003BAFED /* CourseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC53AC312A1FA938003BAFED /* CourseView.swift */; };
+		EC53AC342A1FAEC3003BAFED /* UESummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC53AC332A1FAEC3003BAFED /* UESummaryView.swift */; };
+		EC53AC362A1FB51B003BAFED /* UEDetailPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC53AC352A1FB51B003BAFED /* UEDetailPage.swift */; };
+		EC53AC392A200940003BAFED /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC53AC382A200940003BAFED /* Colors.xcassets */; };
+		EC53AC3B2A20098A003BAFED /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC53AC3A2A20098A003BAFED /* Colors.swift */; };
+		EC53AC3D2A200A8D003BAFED /* BlockRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC53AC3C2A200A8D003BAFED /* BlockRowView.swift */; };
+		ECA694E02A200DF7009F5E53 /* UEListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA694DF2A200DF7009F5E53 /* UEListView.swift */; };
+		ECA694E22A200E46009F5E53 /* BlocksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA694E12A200E46009F5E53 /* BlocksView.swift */; };
 		ECDA041D2A1EAF7E007B6A3B /* UCAverageApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECDA041C2A1EAF7E007B6A3B /* UCAverageApp.swift */; };
 		ECDA041F2A1EAF7E007B6A3B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECDA041E2A1EAF7E007B6A3B /* ContentView.swift */; };
 		ECDA04212A1EAF7E007B6A3B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECDA04202A1EAF7E007B6A3B /* Assets.xcassets */; };
@@ -15,6 +23,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EC53AC312A1FA938003BAFED /* CourseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseView.swift; sourceTree = "<group>"; };
+		EC53AC332A1FAEC3003BAFED /* UESummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UESummaryView.swift; sourceTree = "<group>"; };
+		EC53AC352A1FB51B003BAFED /* UEDetailPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UEDetailPage.swift; sourceTree = "<group>"; };
+		EC53AC382A200940003BAFED /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		EC53AC3A2A20098A003BAFED /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		EC53AC3C2A200A8D003BAFED /* BlockRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockRowView.swift; sourceTree = "<group>"; };
+		ECA694DF2A200DF7009F5E53 /* UEListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UEListView.swift; sourceTree = "<group>"; };
+		ECA694E12A200E46009F5E53 /* BlocksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlocksView.swift; sourceTree = "<group>"; };
 		ECDA04192A1EAF7E007B6A3B /* UCAverageApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UCAverageApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECDA041C2A1EAF7E007B6A3B /* UCAverageApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UCAverageApp.swift; sourceTree = "<group>"; };
 		ECDA041E2A1EAF7E007B6A3B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -34,6 +50,59 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EC53AC2F2A1FA8F0003BAFED /* Pages */ = {
+			isa = PBXGroup;
+			children = (
+				EC53AC352A1FB51B003BAFED /* UEDetailPage.swift */,
+			);
+			path = Pages;
+			sourceTree = "<group>";
+		};
+		EC53AC302A1FA8FB003BAFED /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				EC53AC402A200CCF003BAFED /* UEs */,
+				EC53AC3F2A200CCA003BAFED /* Blocks */,
+				EC53AC3E2A200CC3003BAFED /* Courses */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		EC53AC372A200933003BAFED /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				EC53AC382A200940003BAFED /* Colors.xcassets */,
+				EC53AC3A2A20098A003BAFED /* Colors.swift */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		EC53AC3E2A200CC3003BAFED /* Courses */ = {
+			isa = PBXGroup;
+			children = (
+				EC53AC312A1FA938003BAFED /* CourseView.swift */,
+			);
+			path = Courses;
+			sourceTree = "<group>";
+		};
+		EC53AC3F2A200CCA003BAFED /* Blocks */ = {
+			isa = PBXGroup;
+			children = (
+				EC53AC3C2A200A8D003BAFED /* BlockRowView.swift */,
+				ECA694E12A200E46009F5E53 /* BlocksView.swift */,
+			);
+			path = Blocks;
+			sourceTree = "<group>";
+		};
+		EC53AC402A200CCF003BAFED /* UEs */ = {
+			isa = PBXGroup;
+			children = (
+				EC53AC332A1FAEC3003BAFED /* UESummaryView.swift */,
+				ECA694DF2A200DF7009F5E53 /* UEListView.swift */,
+			);
+			path = UEs;
+			sourceTree = "<group>";
+		};
 		ECDA04102A1EAF7E007B6A3B = {
 			isa = PBXGroup;
 			children = (
@@ -54,6 +123,9 @@
 		ECDA041B2A1EAF7E007B6A3B /* UCAverageApp */ = {
 			isa = PBXGroup;
 			children = (
+				EC53AC372A200933003BAFED /* Assets */,
+				EC53AC302A1FA8FB003BAFED /* Views */,
+				EC53AC2F2A1FA8F0003BAFED /* Pages */,
 				ECDA041C2A1EAF7E007B6A3B /* UCAverageApp.swift */,
 				ECDA041E2A1EAF7E007B6A3B /* ContentView.swift */,
 				ECDA04202A1EAF7E007B6A3B /* Assets.xcassets */,
@@ -138,6 +210,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC53AC392A200940003BAFED /* Colors.xcassets in Resources */,
 				ECDA04242A1EAF7E007B6A3B /* Preview Assets.xcassets in Resources */,
 				ECDA04212A1EAF7E007B6A3B /* Assets.xcassets in Resources */,
 			);
@@ -151,7 +224,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				ECDA041F2A1EAF7E007B6A3B /* ContentView.swift in Sources */,
+				EC53AC3D2A200A8D003BAFED /* BlockRowView.swift in Sources */,
+				EC53AC3B2A20098A003BAFED /* Colors.swift in Sources */,
+				EC53AC362A1FB51B003BAFED /* UEDetailPage.swift in Sources */,
+				ECA694E02A200DF7009F5E53 /* UEListView.swift in Sources */,
+				EC53AC342A1FAEC3003BAFED /* UESummaryView.swift in Sources */,
+				ECA694E22A200E46009F5E53 /* BlocksView.swift in Sources */,
 				ECDA041D2A1EAF7E007B6A3B /* UCAverageApp.swift in Sources */,
+				EC53AC322A1FA938003BAFED /* CourseView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
