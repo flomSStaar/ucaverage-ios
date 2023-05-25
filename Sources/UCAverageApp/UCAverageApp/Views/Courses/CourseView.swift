@@ -33,6 +33,8 @@ struct CourseView: View {
                         .cornerRadius(10)
                     Text(String(format: "%.2f", course.mark))
                 }
+                
+                Divider()
             }
         }
     }

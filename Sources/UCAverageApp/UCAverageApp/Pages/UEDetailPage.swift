@@ -10,15 +10,22 @@ import UCAverageModel
 
 struct UEDetailPage: View {
     var ue: UE
+
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading) {
+            VStack(alignment: .leading, spacing: 24) {
                 UESummaryView(ue: ue)
-                    .padding(.vertical, 16)
-                
+                    .padding(.top, 16)
+
                 VStack(alignment: .leading, spacing: 8) {
                     Label("coefficient : \(ue.coef)", systemImage: "xmark.circle.fill")
                     Label("Détails des notes", systemImage: "note.text")
+                }
+
+                LazyVStack {
+                    ForEach(ue.courses) { course in
+                        CourseView(course: course)
+                    }
                 }
             }
         }
