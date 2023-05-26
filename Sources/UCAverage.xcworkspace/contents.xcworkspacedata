@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:UCAverageViewModel">
+   </FileRef>
+   <FileRef
       location = "group:UCAverageModel">
    </FileRef>
    <FileRef

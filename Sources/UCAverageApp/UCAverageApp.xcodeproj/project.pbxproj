@@ -29,6 +29,7 @@
 		EC53AC382A200940003BAFED /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		EC53AC3A2A20098A003BAFED /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		EC53AC3C2A200A8D003BAFED /* BlockRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockRowView.swift; sourceTree = "<group>"; };
+		EC78B6882A20A70B00F646E4 /* UCAverageModel */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = UCAverageModel; path = ../UCAverageModel; sourceTree = "<group>"; };
 		ECA694DF2A200DF7009F5E53 /* UEListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UEListView.swift; sourceTree = "<group>"; };
 		ECA694E12A200E46009F5E53 /* BlocksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlocksView.swift; sourceTree = "<group>"; };
 		ECDA04192A1EAF7E007B6A3B /* UCAverageApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UCAverageApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -104,9 +105,18 @@
 			path = UEs;
 			sourceTree = "<group>";
 		};
+		EC78B6872A20A70B00F646E4 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				EC78B6882A20A70B00F646E4 /* UCAverageModel */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
 		ECDA04102A1EAF7E007B6A3B = {
 			isa = PBXGroup;
 			children = (
+				EC78B6872A20A70B00F646E4 /* Packages */,
 				ECDA041B2A1EAF7E007B6A3B /* UCAverageApp */,
 				ECDA041A2A1EAF7E007B6A3B /* Products */,
 				ECDA042A2A1EAFE2007B6A3B /* Frameworks */,
