@@ -7,6 +7,7 @@
 
 import SwiftUI
 import UCAverageModel
+import UCAverageStub
 
 struct BlockRowView: View {
     var block: Block

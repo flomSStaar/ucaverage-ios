@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UCAverageModel
 
 public func loadCourses() -> [Course] {
     var courses: [Course] = []

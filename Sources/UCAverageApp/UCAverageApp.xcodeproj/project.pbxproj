@@ -14,6 +14,7 @@
 		EC53AC3B2A20098A003BAFED /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC53AC3A2A20098A003BAFED /* Colors.swift */; };
 		EC53AC3D2A200A8D003BAFED /* BlockRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC53AC3C2A200A8D003BAFED /* BlockRowView.swift */; };
 		EC78B68B2A20B0C400F646E4 /* UCAverageViewModel in Frameworks */ = {isa = PBXBuildFile; productRef = EC78B68A2A20B0C400F646E4 /* UCAverageViewModel */; };
+		EC78B68D2A20B85000F646E4 /* UCAverageStub in Frameworks */ = {isa = PBXBuildFile; productRef = EC78B68C2A20B85000F646E4 /* UCAverageStub */; };
 		ECA694E02A200DF7009F5E53 /* UEListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA694DF2A200DF7009F5E53 /* UEListView.swift */; };
 		ECA694E22A200E46009F5E53 /* BlocksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA694E12A200E46009F5E53 /* BlocksView.swift */; };
 		ECDA041D2A1EAF7E007B6A3B /* UCAverageApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECDA041C2A1EAF7E007B6A3B /* UCAverageApp.swift */; };
@@ -48,6 +49,7 @@
 			files = (
 				ECDA042C2A1EAFE2007B6A3B /* UCAverageModel in Frameworks */,
 				EC78B68B2A20B0C400F646E4 /* UCAverageViewModel in Frameworks */,
+				EC78B68D2A20B85000F646E4 /* UCAverageStub in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -182,6 +184,7 @@
 			packageProductDependencies = (
 				ECDA042B2A1EAFE2007B6A3B /* UCAverageModel */,
 				EC78B68A2A20B0C400F646E4 /* UCAverageViewModel */,
+				EC78B68C2A20B85000F646E4 /* UCAverageStub */,
 			);
 			productName = UCAverageApp;
 			productReference = ECDA04192A1EAF7E007B6A3B /* UCAverageApp.app */;
@@ -450,6 +453,10 @@
 		EC78B68A2A20B0C400F646E4 /* UCAverageViewModel */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = UCAverageViewModel;
+		};
+		EC78B68C2A20B85000F646E4 /* UCAverageStub */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = UCAverageStub;
 		};
 		ECDA042B2A1EAFE2007B6A3B /* UCAverageModel */ = {
 			isa = XCSwiftPackageProductDependency;

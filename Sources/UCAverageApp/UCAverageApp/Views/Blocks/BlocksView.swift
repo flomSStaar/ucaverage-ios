@@ -7,6 +7,7 @@
 
 import SwiftUI
 import UCAverageModel
+import UCAverageStub
 
 struct BlocksView: View {
     var blocks: [Block]

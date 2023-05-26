@@ -10,6 +10,9 @@ let package = Package(
         .library(
             name: "UCAverageModel",
             targets: ["UCAverageModel"]),
+        .library(
+            name: "UCAverageStub",
+            targets: ["UCAverageStub"]),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -24,5 +27,9 @@ let package = Package(
         .testTarget(
             name: "UCAverageModelTests",
             dependencies: ["UCAverageModel"]),
+        .target(
+            name: "UCAverageStub",
+            dependencies: ["UCAverageModel"]
+        )
     ]
 )

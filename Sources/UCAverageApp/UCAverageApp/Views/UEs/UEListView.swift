@@ -7,6 +7,8 @@
 
 import SwiftUI
 import UCAverageModel
+import UCAverageStub
+import UCAverageViewModel
 
 struct UEListView: View {
     var ues: [UE]
@@ -21,10 +23,10 @@ struct UEListView: View {
             LazyVStack(spacing: 8) {
                 ForEach(ues) { ue in
                     HStack(spacing: 8) {
-                        UESummaryView(ue: ue)
+                        UESummaryView(ueVM: UEVM(withUE: ue))
                         
                         NavigationLink {
-                            UEDetailPage(ue: ue)
+                            UEDetailPage(ueVM: UEVM(withUE: ue))
                         } label: {
                             Image(systemName: "square.and.pencil")
                         }

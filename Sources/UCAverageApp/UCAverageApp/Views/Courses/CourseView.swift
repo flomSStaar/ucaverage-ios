@@ -7,7 +7,7 @@
 
 import SwiftUI
 import UCAverageViewModel
-import UCAverageModel
+import UCAverageStub
 
 struct CourseView: View {
     @ObservedObject var courseVM: CourseVM

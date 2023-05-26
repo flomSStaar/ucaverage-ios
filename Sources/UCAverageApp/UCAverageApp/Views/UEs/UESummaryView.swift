@@ -6,17 +6,18 @@
 //
 
 import SwiftUI
-import UCAverageModel
+import UCAverageViewModel
+import UCAverageStub
 
 struct UESummaryView: View {
-    var ue: UE
+    @ObservedObject var ueVM: UEVM
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             HStack {
-                Text(ue.name)
+                Text(ueVM.original.name)
                 Spacer()
-                Text("\(ue.coef)")
+                Text("\(ueVM.original.coef)")
             }
             
             
@@ -25,7 +26,7 @@ struct UESummaryView: View {
                     .frame(width: 100, height: 16)
                     .foregroundColor(.green)
                     .cornerRadius(10)
-                Text(String(format: "%.2f", ue.average))
+                Text(String(format: "%.2f", ueVM.original.average))
                 Spacer()
             }
             Divider()
@@ -37,7 +38,7 @@ struct UESummaryView_Previews: PreviewProvider {
     static var previews: some View {
         let ue = loadUEs()[0]
         NavigationStack {
-            UESummaryView(ue: ue)
+            UESummaryView(ueVM: UEVM(withUE: ue))
                 .previewLayout(.sizeThatFits)
                 .padding()
         }

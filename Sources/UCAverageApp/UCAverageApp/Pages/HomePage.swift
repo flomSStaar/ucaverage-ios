@@ -7,6 +7,7 @@
 
 import SwiftUI
 import UCAverageModel
+import UCAverageStub
 
 struct HomePage: View {
     var blocks: [Block] = loadBlocks()
