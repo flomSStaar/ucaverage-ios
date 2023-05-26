@@ -11,6 +11,7 @@ import UCAverageStub
 
 struct HomePage: View {
     @ObservedObject var homeVM: HomeVM
+    @ObservedObject var uesVM: UEsVM
     
     var body: some View {
         NavigationStack {
@@ -21,7 +22,7 @@ struct HomePage: View {
                 Divider()
                     .padding(.vertical, 10)
                 
-                UEListView(ues: homeVM.ues)
+                UEListView(uesVM: uesVM)
                     .padding(.horizontal, 10)
             }
             .navigationTitle("Calculette")
@@ -33,6 +34,8 @@ struct HomePage_Previews: PreviewProvider {
     static var previews: some View {
         let homeVM: HomeVM = HomeVM(withBlocks: loadBlocks(), andUEs: loadUEs())
 
-        HomePage(homeVM: homeVM)
+        let uesVM: UEsVM = UEsVM(withUEs: loadUEs())
+        
+        HomePage(homeVM: homeVM, uesVM: uesVM)
     }
 }

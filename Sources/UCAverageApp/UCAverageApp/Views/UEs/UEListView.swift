@@ -6,13 +6,12 @@
 //
 
 import SwiftUI
-import UCAverageModel
 import UCAverageStub
 import UCAverageViewModel
 
 struct UEListView: View {
-    var ues: [UE]
-
+    @ObservedObject var uesVM: UEsVM
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
             Label("UEs", systemImage: "doc.fill")
@@ -21,7 +20,7 @@ struct UEListView: View {
                 .padding(.bottom, 12)
 
             LazyVStack(spacing: 8) {
-                ForEach(ues) { ue in
+                ForEach(uesVM.ues) { ue in
                     HStack(spacing: 8) {
                         UESummaryView(ueVM: UEVM(withUE: ue))
                         
@@ -45,8 +44,10 @@ struct UEListView: View {
 
 struct UEListView_Previews: PreviewProvider {
     static var previews: some View {
+        let ues = loadUEs()
+        
         NavigationStack {
-            UEListView(ues: loadUEs())
+            UEListView(uesVM: UEsVM(withUEs: ues))
         }
         .previewLayout(.sizeThatFits)
     }

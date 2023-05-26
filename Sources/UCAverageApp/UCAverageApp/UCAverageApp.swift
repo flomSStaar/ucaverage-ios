@@ -13,10 +13,13 @@ import UCAverageStub
 struct UCAverageApp: App {
     @StateObject
     var homeVM: HomeVM = HomeVM(withBlocks: loadBlocks(), andUEs: loadUEs())
+    
+    @StateObject
+    var uesVM: UEsVM = UEsVM(withUEs: loadUEs())
 
     var body: some Scene {
         WindowGroup {
-            HomePage(homeVM: homeVM)
+            HomePage(homeVM: homeVM, uesVM: uesVM)
         }
     }
 }
