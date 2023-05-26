@@ -10,8 +10,6 @@ import UCAverageViewModel
 import UCAverageStub
 
 struct HomePage: View {
-    @ObservedObject var homeVM: HomeVM
-    
     @ObservedObject var uesVM: UEsVM
     @ObservedObject var blocksVM: BlocksVM
     
@@ -34,11 +32,9 @@ struct HomePage: View {
 
 struct HomePage_Previews: PreviewProvider {
     static var previews: some View {
-        let homeVM: HomeVM = HomeVM(withBlocks: loadBlocks(), andUEs: loadUEs())
-        
         let uesVM: UEsVM = UEsVM(withUEs: loadUEs())
         let blocksVM: BlocksVM = BlocksVM(withBlocks: loadBlocks())
         
-        HomePage(homeVM: homeVM, uesVM: uesVM, blocksVM: blocksVM)
+        HomePage(uesVM: uesVM, blocksVM: blocksVM)
     }
 }
