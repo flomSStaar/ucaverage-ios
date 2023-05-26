@@ -13,6 +13,7 @@
 		EC53AC392A200940003BAFED /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC53AC382A200940003BAFED /* Colors.xcassets */; };
 		EC53AC3B2A20098A003BAFED /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC53AC3A2A20098A003BAFED /* Colors.swift */; };
 		EC53AC3D2A200A8D003BAFED /* BlockRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC53AC3C2A200A8D003BAFED /* BlockRowView.swift */; };
+		EC78B68B2A20B0C400F646E4 /* UCAverageViewModel in Frameworks */ = {isa = PBXBuildFile; productRef = EC78B68A2A20B0C400F646E4 /* UCAverageViewModel */; };
 		ECA694E02A200DF7009F5E53 /* UEListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA694DF2A200DF7009F5E53 /* UEListView.swift */; };
 		ECA694E22A200E46009F5E53 /* BlocksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA694E12A200E46009F5E53 /* BlocksView.swift */; };
 		ECDA041D2A1EAF7E007B6A3B /* UCAverageApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECDA041C2A1EAF7E007B6A3B /* UCAverageApp.swift */; };
@@ -30,6 +31,7 @@
 		EC53AC3A2A20098A003BAFED /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		EC53AC3C2A200A8D003BAFED /* BlockRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockRowView.swift; sourceTree = "<group>"; };
 		EC78B6882A20A70B00F646E4 /* UCAverageModel */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = UCAverageModel; path = ../UCAverageModel; sourceTree = "<group>"; };
+		EC78B6892A20B08E00F646E4 /* UCAverageViewModel */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = UCAverageViewModel; path = ../UCAverageViewModel; sourceTree = "<group>"; };
 		ECA694DF2A200DF7009F5E53 /* UEListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UEListView.swift; sourceTree = "<group>"; };
 		ECA694E12A200E46009F5E53 /* BlocksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlocksView.swift; sourceTree = "<group>"; };
 		ECDA04192A1EAF7E007B6A3B /* UCAverageApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UCAverageApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -45,6 +47,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ECDA042C2A1EAFE2007B6A3B /* UCAverageModel in Frameworks */,
+				EC78B68B2A20B0C400F646E4 /* UCAverageViewModel in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				EC78B6882A20A70B00F646E4 /* UCAverageModel */,
+				EC78B6892A20B08E00F646E4 /* UCAverageViewModel */,
 			);
 			name = Packages;
 			sourceTree = "<group>";
@@ -177,6 +181,7 @@
 			name = UCAverageApp;
 			packageProductDependencies = (
 				ECDA042B2A1EAFE2007B6A3B /* UCAverageModel */,
+				EC78B68A2A20B0C400F646E4 /* UCAverageViewModel */,
 			);
 			productName = UCAverageApp;
 			productReference = ECDA04192A1EAF7E007B6A3B /* UCAverageApp.app */;
@@ -442,6 +447,10 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		EC78B68A2A20B0C400F646E4 /* UCAverageViewModel */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = UCAverageViewModel;
+		};
 		ECDA042B2A1EAFE2007B6A3B /* UCAverageModel */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = UCAverageModel;

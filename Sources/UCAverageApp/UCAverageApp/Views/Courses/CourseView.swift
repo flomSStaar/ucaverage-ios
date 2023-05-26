@@ -6,24 +6,26 @@
 //
 
 import SwiftUI
+import UCAverageViewModel
 import UCAverageModel
 
 struct CourseView: View {
-    var course: Course
+    @ObservedObject var courseVM: CourseVM
 
     var body: some View {
         HStack(spacing: 16) {
             Button {
-                
+                courseVM.onToggleEdit()
             } label: {
-                Image(systemName: "lock")
+                Image(systemName: courseVM.isEditing ? "lock.open" : "lock")
+                    .frame(width: 24)
             }
             
             VStack(alignment: .leading, spacing: 8) {
                 HStack {
-                    Text(course.name)
+                    Text(courseVM.original.name)
                     Spacer()
-                    Text("\(course.coef)")
+                    Text("\(courseVM.original.coef)")
                 }
                 
                 HStack {
@@ -31,7 +33,7 @@ struct CourseView: View {
                         .frame(width: 100, height: 16)
                         .foregroundColor(.green)
                         .cornerRadius(10)
-                    Text(String(format: "%.2f", course.mark))
+                    Text(String(format: "%.2f", courseVM.original.mark))
                 }
                 
                 Divider()
@@ -44,7 +46,7 @@ struct CourseView_Previews: PreviewProvider {
     static var previews: some View {
         let course = loadCourses()[0]
         
-        CourseView(course: course)
+        CourseView(courseVM: CourseVM(withCourse: course))
             .previewLayout(.sizeThatFits)
     }
 }

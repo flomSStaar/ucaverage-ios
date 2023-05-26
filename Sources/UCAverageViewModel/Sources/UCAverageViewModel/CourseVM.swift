@@ -8,7 +8,7 @@
 import Foundation
 import UCAverageModel
 
-extension Course {
+public extension Course {
     struct Data: Identifiable {
         public let id: UUID
         public var name: String
@@ -32,10 +32,10 @@ extension Course {
 }
 
 public class CourseVM: ObservableObject {
-    var original: Course
+    public var original: Course
     
-    @Published var model: Course.Data
-    @Published var isEditing: Bool = false
+    @Published public var model: Course.Data
+    @Published public var isEditing: Bool = false
     
     public init(withCourse course: Course) {
         self.original = course
@@ -46,16 +46,24 @@ public class CourseVM: ObservableObject {
         self.init(withCourse: Course(withName: "", andCoef: 1, andMark: 0))
     }
     
-    func onEditing() {
+    public func onEditing() {
         model = original.data
         isEditing = true
     }
     
-    func onEdited(isCancelled cancelled: Bool = false) {
+    public func onEdited(isCancelled cancelled: Bool = false) {
         if(!cancelled) {
             original.update(from: model)
         }
         isEditing = false
         model = original.data
+    }
+    
+    public func onToggleEdit() {
+        if(isEditing) {
+            onEdited()
+        } else {
+            onEditing()
+        }
     }
 }

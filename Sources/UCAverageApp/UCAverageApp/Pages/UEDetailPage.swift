@@ -7,6 +7,7 @@
 
 import SwiftUI
 import UCAverageModel
+import UCAverageViewModel
 
 struct UEDetailPage: View {
     var ue: UE
@@ -24,7 +25,7 @@ struct UEDetailPage: View {
 
                 LazyVStack {
                     ForEach(ue.courses) { course in
-                        CourseView(course: course)
+                        CourseView(courseVM: CourseVM(withCourse: course))
                     }
                 }
             }
