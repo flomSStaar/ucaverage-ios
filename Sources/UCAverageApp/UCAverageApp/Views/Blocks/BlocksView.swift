@@ -11,7 +11,6 @@ import UCAverageStub
 
 struct BlocksView: View {
     @ObservedObject var blocksVM: BlocksVM
-    //var blocks: [Block]
 
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
@@ -22,7 +21,7 @@ struct BlocksView: View {
 
             LazyVStack(spacing: 4) {
                 ForEach(blocksVM.blocks) { block in
-                    BlockRowView(block: block)
+                    BlockRowView(blockVM: BlockVM(withBlock: block))
                 }
             }
         }
