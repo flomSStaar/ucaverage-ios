@@ -6,23 +6,22 @@
 //
 
 import SwiftUI
-import UCAverageModel
+import UCAverageViewModel
 import UCAverageStub
 
 struct HomePage: View {
-    var blocks: [Block] = loadBlocks()
-    var ues: [UE] = loadUEs()
+    @ObservedObject var homeVM: HomeVM
     
     var body: some View {
         NavigationStack {
             ScrollView {
-                BlocksView(blocks: blocks)
+                BlocksView(blocks: homeVM.blocks)
                     .padding(.horizontal, 10)
                 
                 Divider()
                     .padding(.vertical, 10)
                 
-                UEListView(ues: ues)
+                UEListView(ues: homeVM.ues)
                     .padding(.horizontal, 10)
             }
             .navigationTitle("Calculette")
@@ -32,6 +31,8 @@ struct HomePage: View {
 
 struct HomePage_Previews: PreviewProvider {
     static var previews: some View {
-        HomePage()
+        let homeVM: HomeVM = HomeVM(withBlocks: loadBlocks(), andUEs: loadUEs())
+
+        HomePage(homeVM: homeVM)
     }
 }

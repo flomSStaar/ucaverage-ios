@@ -6,13 +6,17 @@
 //
 
 import SwiftUI
-import UCAverageModel
+import UCAverageViewModel
+import UCAverageStub
 
 @main
 struct UCAverageApp: App {
+    @StateObject
+    var homeVM: HomeVM = HomeVM(withBlocks: loadBlocks(), andUEs: loadUEs())
+
     var body: some Scene {
         WindowGroup {
-            HomePage()
+            HomePage(homeVM: homeVM)
         }
     }
 }
