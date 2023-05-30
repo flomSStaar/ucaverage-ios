@@ -15,7 +15,7 @@ public class UEsVM: ObservableObject {
         self.ues = ues
     }
     
-    func update(with ueVM: UEVM) {
+    public func update(with ueVM: UEVM) {
         if let i = ues.firstIndex(where: { $0.id == ueVM.original.id }) {
             ues[i] = ueVM.original
         } else {

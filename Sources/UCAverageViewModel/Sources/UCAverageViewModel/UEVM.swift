@@ -14,6 +14,12 @@ public extension UE {
         public var name: String
         public var coef: Int
         public var courses: [Course.Data] = []
+        
+        public func toUE() -> UE {
+            var ue = UE(withId: self.id, andName: self.name, andCoef: self.coef)
+            ue.courses = self.courses.map { $0.toCourse() }
+            return ue
+        }
     }
     
     var data: Data {

@@ -14,6 +14,10 @@ public extension Course {
         public var name: String
         public var coef: Int
         public var mark: Float
+        
+        public func toCourse() -> Course {
+           return Course(withId: self.id, andName: self.name, andCoef: self.coef, andMark: self.mark)
+        }
     }
     
     var data: Data {

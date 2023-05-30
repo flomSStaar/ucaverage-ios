@@ -23,7 +23,7 @@ public extension Block {
         guard self.id == data.id else { return }
         
         self.name = data.name
-        self.ues = data.ues.map { UE(withId: $0.id, andName: $0.name, andCoef: $0.coef) }
+        self.ues = data.ues.map { $0.toUE() }
     }
 }
 
