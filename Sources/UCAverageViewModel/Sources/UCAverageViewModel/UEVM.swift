@@ -64,4 +64,14 @@ public class UEVM: ObservableObject {
         isEditing = false
         model = original.data
     }
+    
+    public func addCourse(withName name: String, andCoef coef: Int, andMark mark: Float) {
+        model.courses.append(Course.Data(id: UUID(), name: name, coef: coef, mark: mark))
+    }
+    
+    public func removeCourse(withId id: UUID) {
+        if let index = model.courses.firstIndex(where: { $0.id == id }) {
+            model.courses.remove(at: index)
+        }
+    }
 }

@@ -21,23 +21,7 @@ struct CourseView: View {
                     .frame(width: 24)
             }
             
-            VStack(alignment: .leading, spacing: 8) {
-                HStack {
-                    Text(courseVM.original.name)
-                    Spacer()
-                    Text("\(courseVM.original.coef)")
-                }
-                
-                HStack {
-                    Rectangle()
-                        .frame(width: 100, height: 16)
-                        .foregroundColor(.green)
-                        .cornerRadius(10)
-                    Text(String(format: "%.2f", courseVM.original.mark))
-                }
-                
-                Divider()
-            }
+            CourseItemView(courseVM: courseVM)
         }
     }
 }

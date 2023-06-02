@@ -10,6 +10,7 @@ import UCAverageViewModel
 import UCAverageStub
 
 struct UEDetailPage: View {
+    @ObservedObject var uesVM: UEsVM
     @ObservedObject var ueVM: UEVM
 
     var body: some View {
@@ -44,11 +45,12 @@ struct UEDetailPage: View {
         }
         .sheet(isPresented: $ueVM.isEditing) {
             NavigationStack {
-                Text("Page d'édition d'un UE")
+                UEEditView(ueVM: ueVM)
                     .toolbar {
                         ToolbarItem(placement: .confirmationAction) {
                             Button("Done") {
                                 ueVM.onEdited()
+                                uesVM.update(with: ueVM)
                             }
                         }
                         ToolbarItem(placement: .cancellationAction) {
@@ -58,15 +60,17 @@ struct UEDetailPage: View {
                         }
                     }
             }
+            .padding()
         }
     }
 }
 
 struct UEDetailPage_Previews: PreviewProvider {
     static var previews: some View {
-        let ue = loadUEs()[0]
+        let ues = loadUEs()
+        let ue = ues[0]
         NavigationStack {
-            UEDetailPage(ueVM: UEVM(withUE: ue))
+            UEDetailPage(uesVM: UEsVM(withUEs: ues), ueVM: UEVM(withUE: ue))
         }
     }
 }

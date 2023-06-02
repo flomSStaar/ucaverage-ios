@@ -25,7 +25,7 @@ struct UEListView: View {
                         UESummaryView(ueVM: UEVM(withUE: ue))
                         
                         NavigationLink {
-                            UEDetailPage(ueVM: UEVM(withUE: ue))
+                            UEDetailPage(uesVM: uesVM, ueVM: UEVM(withUE: ue))
                         } label: {
                             Image(systemName: "square.and.pencil")
                         }

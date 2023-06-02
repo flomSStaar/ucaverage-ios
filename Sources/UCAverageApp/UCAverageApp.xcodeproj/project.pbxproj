@@ -13,6 +13,9 @@
 		EC53AC392A200940003BAFED /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC53AC382A200940003BAFED /* Colors.xcassets */; };
 		EC53AC3B2A20098A003BAFED /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC53AC3A2A20098A003BAFED /* Colors.swift */; };
 		EC53AC3D2A200A8D003BAFED /* BlockRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC53AC3C2A200A8D003BAFED /* BlockRowView.swift */; };
+		EC5BCB572A25EAB500BFFB72 /* UEEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5BCB562A25EAB500BFFB72 /* UEEditView.swift */; };
+		EC5BCB5C2A25F2D900BFFB72 /* CourseEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5BCB5B2A25F2D900BFFB72 /* CourseEditView.swift */; };
+		EC5BCB5E2A25F83200BFFB72 /* CourseItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5BCB5D2A25F83200BFFB72 /* CourseItemView.swift */; };
 		EC78B68B2A20B0C400F646E4 /* UCAverageViewModel in Frameworks */ = {isa = PBXBuildFile; productRef = EC78B68A2A20B0C400F646E4 /* UCAverageViewModel */; };
 		EC78B68D2A20B85000F646E4 /* UCAverageStub in Frameworks */ = {isa = PBXBuildFile; productRef = EC78B68C2A20B85000F646E4 /* UCAverageStub */; };
 		ECA694E02A200DF7009F5E53 /* UEListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA694DF2A200DF7009F5E53 /* UEListView.swift */; };
@@ -31,6 +34,9 @@
 		EC53AC382A200940003BAFED /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		EC53AC3A2A20098A003BAFED /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		EC53AC3C2A200A8D003BAFED /* BlockRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockRowView.swift; sourceTree = "<group>"; };
+		EC5BCB562A25EAB500BFFB72 /* UEEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UEEditView.swift; sourceTree = "<group>"; };
+		EC5BCB5B2A25F2D900BFFB72 /* CourseEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseEditView.swift; sourceTree = "<group>"; };
+		EC5BCB5D2A25F83200BFFB72 /* CourseItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseItemView.swift; sourceTree = "<group>"; };
 		EC78B6882A20A70B00F646E4 /* UCAverageModel */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = UCAverageModel; path = ../UCAverageModel; sourceTree = "<group>"; };
 		EC78B6892A20B08E00F646E4 /* UCAverageViewModel */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = UCAverageViewModel; path = ../UCAverageViewModel; sourceTree = "<group>"; };
 		ECA694DF2A200DF7009F5E53 /* UEListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UEListView.swift; sourceTree = "<group>"; };
@@ -88,6 +94,8 @@
 			isa = PBXGroup;
 			children = (
 				EC53AC312A1FA938003BAFED /* CourseView.swift */,
+				EC5BCB5B2A25F2D900BFFB72 /* CourseEditView.swift */,
+				EC5BCB5D2A25F83200BFFB72 /* CourseItemView.swift */,
 			);
 			path = Courses;
 			sourceTree = "<group>";
@@ -106,6 +114,7 @@
 			children = (
 				EC53AC332A1FAEC3003BAFED /* UESummaryView.swift */,
 				ECA694DF2A200DF7009F5E53 /* UEListView.swift */,
+				EC5BCB562A25EAB500BFFB72 /* UEEditView.swift */,
 			);
 			path = UEs;
 			sourceTree = "<group>";
@@ -243,12 +252,15 @@
 			files = (
 				ECDA041F2A1EAF7E007B6A3B /* HomePage.swift in Sources */,
 				EC53AC3D2A200A8D003BAFED /* BlockRowView.swift in Sources */,
+				EC5BCB5E2A25F83200BFFB72 /* CourseItemView.swift in Sources */,
 				EC53AC3B2A20098A003BAFED /* Colors.swift in Sources */,
 				EC53AC362A1FB51B003BAFED /* UEDetailPage.swift in Sources */,
 				ECA694E02A200DF7009F5E53 /* UEListView.swift in Sources */,
 				EC53AC342A1FAEC3003BAFED /* UESummaryView.swift in Sources */,
+				EC5BCB572A25EAB500BFFB72 /* UEEditView.swift in Sources */,
 				ECA694E22A200E46009F5E53 /* BlocksView.swift in Sources */,
 				ECDA041D2A1EAF7E007B6A3B /* UCAverageApp.swift in Sources */,
+				EC5BCB5C2A25F2D900BFFB72 /* CourseEditView.swift in Sources */,
 				EC53AC322A1FA938003BAFED /* CourseView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
