@@ -8,65 +8,115 @@
 import Foundation
 import UCAverageModel
 
-public extension UE {
-    struct Data: Identifiable {
-        public let id: UUID
-        public var name: String
-        public var coef: Int
-        public var courses: [Course.Data] = []
-        
-        public func toUE() -> UE {
-            var ue = UE(withId: self.id, andName: self.name, andCoef: self.coef)
-            ue.courses = self.courses.map { $0.toCourse() }
-            return ue
-        }
+public class UEVM: BaseVM, Identifiable, Equatable {
+    
+    public init(withModel model: UE) {
+        super.init()
+        self.model = model
     }
     
-    var data: Data {
-        Data(id: self.id, name: self.name, coef: self.coef, courses: self.courses.map { $0.data })
+    public static func == (lhs: UEVM, rhs: UEVM) -> Bool {
+        lhs.id == rhs.id
     }
     
-    mutating func update(from data: Data) {
-        guard self.id == data.id else { return }
-        
-        self.name = data.name
-        self.coef = data.coef
-        self.courses = data.courses.map {
-            Course(withId: $0.id, andName: $0.name, andCoef: $0.coef, andMark: $0.mark)
-        }
-    }
-}
+    public var id: UUID { model.id }
 
-public class UEVM: ObservableObject {
-    public var original: UE
+    @Published
+    public var isEditing: Bool = false
     
-    @Published public var model: UE.Data
-    @Published public var isEditing: Bool = false
-    
-    public init(withUE ue: UE) {
-        self.original = ue
-        self.model = ue.data
-    }
-    
-    public convenience init() {
-        self.init(withUE: UE(withName: "", andCoef: 1))
+    @Published
+    public var copy: UEVM? = nil
+
+    @Published
+    public private(set) var model: UE = UE(withName: "", andCoef: 0) {
+        didSet {
+            modelDidSet()
+            onModelChanged()
+        }
     }
     
     public func onEditing() {
-        model = original.data
+        self.copy = UEVM(withModel: model)
+        for courseVM in copy!.courses {
+            courseVM.onEditing()
+        }
         isEditing = true
+        
     }
     
     public func onEdited(isCancelled cancelled: Bool = false) {
-        if(!cancelled) {
-            original.update(from: model)
+        if !cancelled {
+            if let copy = self.copy {
+                update(copy: copy)
+            }
         }
+        self.copy = nil
         isEditing = false
-        model = original.data
+    }
+    
+    func modelDidSet() {
+        if self.name != self.model.name {
+            self.name = self.model.name
+        }
+        if self.coef != self.model.coef {
+            self.coef = self.model.coef
+        }
+        if checkCoursesNotEquals() {
+            self.courses = self.model.courses.map { CourseVM(withModel: $0) }
+        }
+    }
+    
+    func update(copy: UEVM) {
+        if let copy = self.copy {
+            self.name = copy.name
+            self.coef = copy.coef
+            self.courses = copy.courses
+        }
+    }
+    
+    @Published
+    public var name: String = "" {
+        didSet {
+            if self.model.name != self.name {
+                self.model.name = self.name
+            }
+        }
+    }
+    
+    @Published
+    public var coef: Int = 0 {
+        didSet {
+            if self.model.coef != self.coef {
+                self.model.coef = self.coef
+            }
+        }
+    }
+    
+    public var average: Float {
+        model.average
+    }
+    
+    @Published
+    public var courses: [CourseVM] = [] {
+        didSet {
+            if checkCoursesNotEquals() {
+                self.model.courses = self.courses.map { $0.model }
+            }
+            
+        }
+    }
+    
+    private func checkCoursesNotEquals() -> Bool {
+        return self.model.courses.count != self.courses.count
+        || !self.model.courses.allSatisfy({ course in
+            self.courses.contains { courseVM in
+                courseVM.model == course
+            }
+        })
     }
     
     public func addCourse(withName name: String, andCoef coef: Int, andMark mark: Float) {
-        model.courses.append(Course.Data(id: UUID(), name: name, coef: coef, mark: mark))
+        model.courses.append(Course(withName: name, andCoef: coef, andMark: mark))
     }
     
     public func removeCourse(withId id: UUID) {

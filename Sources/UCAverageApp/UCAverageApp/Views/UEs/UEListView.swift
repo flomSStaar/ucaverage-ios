@@ -20,16 +20,16 @@ struct UEListView: View {
                 .padding(.bottom, 12)
 
             LazyVStack(spacing: 8) {
-                ForEach(uesVM.ues) { ue in
+                ForEach(uesVM.ues, id: \.id) { ueVM in
                     HStack(spacing: 8) {
-                        UESummaryView(ueVM: UEVM(withUE: ue))
-                        
+                        UESummaryView(ueVM: ueVM)
+
                         NavigationLink {
-                            UEDetailPage(uesVM: uesVM, ueVM: UEVM(withUE: ue))
+                            UEDetailPage(uesVM: uesVM, ueVM: ueVM)
                         } label: {
                             Image(systemName: "square.and.pencil")
                         }
-                        
+
                         Divider()
                     }
                 }

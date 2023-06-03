@@ -20,19 +20,19 @@ struct UEDetailPage: View {
                     .padding(.top, 16)
 
                 VStack(alignment: .leading, spacing: 8) {
-                    Label("coefficient : \(ueVM.original.coef)", systemImage: "xmark.circle.fill")
+                    Label("coefficient : \(ueVM.coef)", systemImage: "xmark.circle.fill")
                     Label("Détails des notes", systemImage: "note.text")
                 }
 
                 LazyVStack {
-                    ForEach(ueVM.original.courses) { course in
-                        CourseView(courseVM: CourseVM(withCourse: course))
+                    ForEach(ueVM.courses) { courseVM in
+                        CourseView(courseVM: courseVM)
                     }
                 }
             }
         }
         .padding(.horizontal)
-        .navigationTitle(ueVM.original.name)
+        .navigationTitle(ueVM.name)
         .navigationBarTitleDisplayMode(.large)
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
@@ -45,12 +45,12 @@ struct UEDetailPage: View {
         }
         .sheet(isPresented: $ueVM.isEditing) {
             NavigationStack {
-                UEEditView(ueVM: ueVM)
+                UEEditView(ueVM: ueVM.copy!)
                     .toolbar {
                         ToolbarItem(placement: .confirmationAction) {
                             Button("Done") {
                                 ueVM.onEdited()
-                                uesVM.update(with: ueVM)
+                                //uesVM.update(with: ueVM)
                             }
                         }
                         ToolbarItem(placement: .cancellationAction) {
@@ -70,7 +70,7 @@ struct UEDetailPage_Previews: PreviewProvider {
         let ues = loadUEs()
         let ue = ues[0]
         NavigationStack {
-            UEDetailPage(uesVM: UEsVM(withUEs: ues), ueVM: UEVM(withUE: ue))
+            UEDetailPage(uesVM: UEsVM(withUEs: ues), ueVM: UEVM(withModel: ue))
         }
     }
 }

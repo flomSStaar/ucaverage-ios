@@ -8,66 +8,84 @@
 import Foundation
 import UCAverageModel
 
-public extension Course {
-    struct Data: Identifiable {
-        public let id: UUID
-        public var name: String
-        public var coef: Int
-        public var mark: Float
-        
-        public func toCourse() -> Course {
-           return Course(withId: self.id, andName: self.name, andCoef: self.coef, andMark: self.mark)
-        }
+public class CourseVM: BaseVM, Identifiable {
+    
+    public init(withModel model: Course) {
+        super.init()
+        self.model = model
     }
     
-    var data: Data {
-        Data(id: self.id, name: self.name, coef: self.coef, mark: self.mark)
-    }
+    @Published
+    public var isEditing: Bool = false
     
-    mutating func update(from data: Data) {
-        guard data.id == self.id else {
-            return
-        }
-        
-        self.name = data.name
-        self.coef = data.coef
-        self.mark = data.mark
-    }
-}
+    @Published
+    public var copy: CourseVM? = nil
+    
+    public var id: UUID { model.id }
+    
+    @Published
+    public private(set) var model: Course = Course(withName: "", andCoef: 0, andMark: 0) {
+        didSet {
+            if self.name != self.model.name {
+                self.name = self.model.name
+            }
+            if self.coef != self.model.coef {
+                self.coef = self.model.coef
+            }
+            if self.mark != self.model.mark {
+                self.mark = self.model.mark
+            }
 
-public class CourseVM: ObservableObject {
-    public var original: Course
-    
-    @Published public var model: Course.Data
-    @Published public var isEditing: Bool = false
-    
-    public init(withCourse course: Course) {
-        self.original = course
-        self.model = course.data
+            onModelChanged()
+        }
     }
     
-    public convenience init() {
-        self.init(withCourse: Course(withName: "", andCoef: 1, andMark: 0))
+    @Published
+    public var name: String = "" {
+        didSet {
+            if self.model.name != self.name {
+                self.model.name = self.name
+            }
+        }
+    }
+    
+    @Published
+    public var coef: Int = 0 {
+        didSet {
+            if self.model.coef != self.coef {
+                self.model.coef = self.coef
+            }
+        }
+    }
+    
+    @Published
+    public var mark: Float = 0 {
+        didSet {
+            if self.model.mark != self.mark {
+                self.model.mark = self.mark
+            }
+        }
     }
     
     public func onEditing() {
-        model = original.data
+        self.copy = CourseVM(withModel: model)
         isEditing = true
+        
     }
     
     public func onEdited(isCancelled cancelled: Bool = false) {
-        if(!cancelled) {
-            original.update(from: model)
+        if !cancelled {
+            update()
         }
+        self.copy = nil
         isEditing = false
-        model = original.data
     }
     
-    public func onToggleEdit() {
-        if(isEditing) {
-            onEdited()
-        } else {
-            onEditing()
+    private func update() {
+        if let copy = self.copy {
+            self.name = copy.name
+            self.coef = copy.coef
+            self.mark = copy.mark
         }
     }
 }

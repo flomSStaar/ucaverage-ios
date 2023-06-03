@@ -23,14 +23,14 @@ struct UEEditView: View {
                 VStack(alignment: .leading, spacing: 0) {
                     Text("Nom de l'UE")
                         .fontWeight(.bold)
-                    TextField("Nom", text: $ueVM.model.name)
+                    TextField("Nom", text: $ueVM.name)
                 }
                 
                 VStack(alignment: .leading, spacing: 0) {
                     Text("Coefficient de l'UE")
                         .fontWeight(.bold)
                     TextField("Coefficient",
-                              value: $ueVM.model.coef,
+                              value: $ueVM.coef,
                               format: .number)
                 }
                 
@@ -55,14 +55,14 @@ struct UEEditView: View {
                 }
 
                 LazyVStack(spacing: 12) {
-                    ForEach(ueVM.model.courses) { course in
+                    ForEach(ueVM.courses) { courseVM in
                         VStack {
                             HStack(spacing: 16) {
-                                CourseEditView(courseVM: CourseVM(withCourse: course.toCourse()))
+                                CourseEditView(courseVM: courseVM)
                                 
                                 Button {
                                     withAnimation(.easeInOut) {
-                                        ueVM.removeCourse(withId: course.id)
+                                        ueVM.removeCourse(withId: courseVM.id)
                                     }
                                 } label: {
                                     Image(systemName: "minus.circle.fill")
@@ -82,6 +82,6 @@ struct UEEditView: View {
 struct UEEditView_Previews: PreviewProvider {
     static var previews: some View {
         let ue = loadUEs()[0]
-        UEEditView(ueVM: UEVM(withUE: ue))
+        UEEditView(ueVM: UEVM(withModel: ue))
     }
 }

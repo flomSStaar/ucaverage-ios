@@ -15,7 +15,11 @@ struct CourseView: View {
     var body: some View {
         HStack(spacing: 16) {
             Button {
-                courseVM.onToggleEdit()
+                if courseVM.isEditing {
+                    courseVM.onEdited()
+                } else {
+                    courseVM.onEditing()
+                }
             } label: {
                 Image(systemName: courseVM.isEditing ? "lock.open" : "lock")
                     .frame(width: 24)
@@ -30,7 +34,7 @@ struct CourseView_Previews: PreviewProvider {
     static var previews: some View {
         let course = loadCourses()[0]
         
-        CourseView(courseVM: CourseVM(withCourse: course))
+        CourseView(courseVM: CourseVM(withModel: course))
             .previewLayout(.sizeThatFits)
     }
 }

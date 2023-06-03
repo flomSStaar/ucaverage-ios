@@ -12,18 +12,19 @@ public extension Block {
     struct Data: Identifiable {
         public let id: UUID
         public var name: String
-        public var ues: [UE.Data] = []
+        //public var ues: [UE.Data] = []
     }
 
     var data: Data {
-        Data(id: self.id, name: self.name, ues: self.ues.map { $0.data })
+        //Data(id: self.id, name: self.name, ues: self.ues.map { $0.data })
+        Data(id: self.id, name: self.name)
     }
 
     mutating func update(from data: Data) {
         guard self.id == data.id else { return }
         
         self.name = data.name
-        self.ues = data.ues.map { $0.toUE() }
+        //self.ues = data.ues.map { $0.toUE() }
     }
 }
 

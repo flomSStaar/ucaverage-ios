@@ -17,14 +17,14 @@ struct CourseEditView: View {
             VStack(alignment: .leading, spacing: 0) {
                 Text("Matière")
                     .fontWeight(.bold)
-                TextField("Nom", text: $courseVM.model.name)
+                TextField("Nom", text: $courseVM.name)
             }
             
             VStack(alignment: .leading, spacing: 0) {
                 Text("Coefficient")
                     .fontWeight(.bold)
                 TextField("Coefficient",
-                          value: $courseVM.model.coef,
+                          value: $courseVM.coef,
                           format: .number)
             }
         }
@@ -34,6 +34,6 @@ struct CourseEditView: View {
 struct CourseEditView_Previews: PreviewProvider {
     static var previews: some View {
         let course = loadCourses()[0]
-        CourseEditView(courseVM: CourseVM(withCourse: course))
+        CourseEditView(courseVM: CourseVM(withModel: course))
     }
 }

@@ -15,9 +15,9 @@ struct UESummaryView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             HStack {
-                Text(ueVM.original.name)
+                Text(ueVM.name)
                 Spacer()
-                Text("\(ueVM.original.coef)")
+                Text("\(ueVM.coef)")
             }
             
             
@@ -26,7 +26,7 @@ struct UESummaryView: View {
                     .frame(width: 100, height: 16)
                     .foregroundColor(.green)
                     .cornerRadius(10)
-                Text(String(format: "%.2f", ueVM.original.average))
+                Text(String(format: "%.2f", ueVM.average))
                 Spacer()
             }
             Divider()
@@ -38,7 +38,7 @@ struct UESummaryView_Previews: PreviewProvider {
     static var previews: some View {
         let ue = loadUEs()[0]
         NavigationStack {
-            UESummaryView(ueVM: UEVM(withUE: ue))
+            UESummaryView(ueVM: UEVM(withModel: ue))
                 .previewLayout(.sizeThatFits)
                 .padding()
         }

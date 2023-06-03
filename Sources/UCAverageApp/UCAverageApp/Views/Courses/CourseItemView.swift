@@ -15,9 +15,9 @@ struct CourseItemView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             HStack {
-                Text(courseVM.original.name)
+                Text(courseVM.name)
                 Spacer()
-                Text("\(courseVM.original.coef)")
+                Text("\(courseVM.coef)")
             }
             
             HStack {
@@ -25,7 +25,7 @@ struct CourseItemView: View {
                     .frame(width: 100, height: 16)
                     .foregroundColor(.green)
                     .cornerRadius(10)
-                Text(String(format: "%.2f", courseVM.original.mark))
+                Text(String(format: "%.2f", courseVM.mark))
             }
             
             Divider()
@@ -36,6 +36,6 @@ struct CourseItemView: View {
 struct CourseItemView_Previews: PreviewProvider {
     static var previews: some View {
         let course = loadCourses()[0]
-        CourseItemView(courseVM: CourseVM(withCourse: course))
+        CourseItemView(courseVM: CourseVM(withModel: course))
     }
 }
