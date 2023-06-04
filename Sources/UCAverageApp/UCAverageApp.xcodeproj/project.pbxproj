@@ -27,6 +27,7 @@
 		ECDA042C2A1EAFE2007B6A3B /* UCAverageModel in Frameworks */ = {isa = PBXBuildFile; productRef = ECDA042B2A1EAFE2007B6A3B /* UCAverageModel */; };
 		ECFEB2352A2CEE41004F6FF2 /* SimpleSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFEB2342A2CEE41004F6FF2 /* SimpleSlider.swift */; };
 		ECFEB2392A2CF12A004F6FF2 /* CourseMarkSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFEB2382A2CF12A004F6FF2 /* CourseMarkSlider.swift */; };
+		ECFEB23B2A2D14DE004F6FF2 /* MarkSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFEB23A2A2D14DE004F6FF2 /* MarkSlider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		ECDA04232A1EAF7E007B6A3B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		ECFEB2342A2CEE41004F6FF2 /* SimpleSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleSlider.swift; sourceTree = "<group>"; };
 		ECFEB2382A2CF12A004F6FF2 /* CourseMarkSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseMarkSlider.swift; sourceTree = "<group>"; };
+		ECFEB23A2A2D14DE004F6FF2 /* MarkSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkSlider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,6 +186,7 @@
 			isa = PBXGroup;
 			children = (
 				ECFEB2342A2CEE41004F6FF2 /* SimpleSlider.swift */,
+				ECFEB23A2A2D14DE004F6FF2 /* MarkSlider.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -274,6 +277,7 @@
 				EC5BCB572A25EAB500BFFB72 /* UEEditView.swift in Sources */,
 				ECFEB2352A2CEE41004F6FF2 /* SimpleSlider.swift in Sources */,
 				ECFEB2392A2CF12A004F6FF2 /* CourseMarkSlider.swift in Sources */,
+				ECFEB23B2A2D14DE004F6FF2 /* MarkSlider.swift in Sources */,
 				ECA694E22A200E46009F5E53 /* BlocksView.swift in Sources */,
 				ECDA041D2A1EAF7E007B6A3B /* UCAverageApp.swift in Sources */,
 				EC5BCB5C2A25F2D900BFFB72 /* CourseEditView.swift in Sources */,

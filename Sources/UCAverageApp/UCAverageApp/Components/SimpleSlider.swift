@@ -10,7 +10,8 @@ import SwiftUI
 // slider from https://stackoverflow.com/a/58288003
 struct SimpleSlider: View {
     @Binding var value: Float
-    @Binding var isEnabled: Bool
+    var isEnabled: Bool
+    var thumbColor: Color = .accentColor
     
     var maxValue: Int = 20
     
@@ -20,7 +21,7 @@ struct SimpleSlider: View {
                 Rectangle()
                     .foregroundColor(.gray)
                 Rectangle()
-                    .foregroundColor(.accentColor)
+                    .foregroundColor(thumbColor)
                     .clipShape(Capsule())
                     .frame(width: geometry.size.width * CGFloat(self.value / Float(maxValue)))
             }
@@ -43,7 +44,7 @@ struct SimpleSlider: View {
 
 struct SimpleSlider_Previews: PreviewProvider {
     static var previews: some View {
-        SimpleSlider(value: .constant(18), isEnabled: .constant(true))
+        SimpleSlider(value: .constant(18), isEnabled: true)
             .frame(height: 40)
             .previewLayout(.sizeThatFits)
     }
