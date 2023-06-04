@@ -90,6 +90,7 @@
 		EC53AC372A200933003BAFED /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				ECDA04202A1EAF7E007B6A3B /* Assets.xcassets */,
 				EC53AC382A200940003BAFED /* Colors.xcassets */,
 				EC53AC3A2A20098A003BAFED /* Colors.swift */,
 			);
@@ -161,7 +162,6 @@
 				EC53AC302A1FA8FB003BAFED /* Views */,
 				EC53AC2F2A1FA8F0003BAFED /* Pages */,
 				ECDA041C2A1EAF7E007B6A3B /* UCAverageApp.swift */,
-				ECDA04202A1EAF7E007B6A3B /* Assets.xcassets */,
 				ECDA04222A1EAF7E007B6A3B /* Preview Content */,
 			);
 			path = UCAverageApp;
