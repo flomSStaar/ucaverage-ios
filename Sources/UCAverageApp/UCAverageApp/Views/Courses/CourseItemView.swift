@@ -10,7 +10,7 @@ import UCAverageViewModel
 import UCAverageStub
 
 struct CourseItemView: View {
-    var courseVM: CourseVM
+    @ObservedObject var courseVM: CourseVM
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
@@ -20,13 +20,8 @@ struct CourseItemView: View {
                 Text("\(courseVM.coef)")
             }
             
-            HStack {
-                Rectangle()
-                    .frame(width: 100, height: 16)
-                    .foregroundColor(.green)
-                    .cornerRadius(10)
-                Text(String(format: "%.2f", courseVM.mark))
-            }
+            MarkSlider(mark: $courseVM.mark, isEditable: courseVM.isEditing)
+                .frame(height: 24)
             
             Divider()
         }
@@ -37,5 +32,7 @@ struct CourseItemView_Previews: PreviewProvider {
     static var previews: some View {
         let course = loadCourses()[0]
         CourseItemView(courseVM: CourseVM(withModel: course))
+            .frame(height: 60)
+            .previewLayout(.sizeThatFits)
     }
 }

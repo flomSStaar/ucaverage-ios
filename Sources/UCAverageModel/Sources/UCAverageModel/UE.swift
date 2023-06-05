@@ -36,4 +36,12 @@ public struct UE: Identifiable {
     public init(withName name: String, andCoef coef: Int) {
         self.init(withId: UUID(), andName: name, andCoef: coef)
     }
+    
+    public mutating func updateCourse(from course: Course) {
+        let index = self.courses.firstIndex(of: course)
+        
+        if let index {
+            self.courses[index] = course
+        }
+    }
 }

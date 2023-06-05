@@ -20,15 +20,7 @@ struct UESummaryView: View {
                 Text("\(ueVM.coef)")
             }
             
-            
-            HStack {
-                Rectangle()
-                    .frame(width: 100, height: 16)
-                    .foregroundColor(.green)
-                    .cornerRadius(10)
-                Text(String(format: "%.2f", ueVM.average))
-                Spacer()
-            }
+            MarkSlider(mark: .constant(ueVM.average))
             Divider()
         }
     }

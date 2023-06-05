@@ -14,7 +14,7 @@ struct CourseMarkSlider: View {
     
     var body: some View {
         HStack {
-            SimpleSlider(value: $courseMark, isEnabled: $isEditable)
+            SimpleSlider(value: $courseMark, isEnabled: isEditable)
                 .frame(height: 20)
             Spacer()
             Text(String(format: "%.2f", courseMark))

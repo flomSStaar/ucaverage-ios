@@ -20,13 +20,13 @@ public class UEVM: BaseVM, Identifiable, Equatable {
     }
     
     public var id: UUID { model.id }
-
+    
     @Published
     public var isEditing: Bool = false
     
     @Published
     public var copy: UEVM? = nil
-
+    
     @Published
     public private(set) var model: UE = UE(withName: "", andCoef: 0) {
         didSet {
@@ -37,18 +37,15 @@ public class UEVM: BaseVM, Identifiable, Equatable {
     
     public func onEditing() {
         self.copy = UEVM(withModel: model)
-        for courseVM in copy!.courses {
-            courseVM.onEditing()
-        }
         isEditing = true
         
     }
     
     public func onEdited(isCancelled cancelled: Bool = false) {
+        if !isEditing { return }
+        
         if !cancelled {
-            if let copy = self.copy {
-                update(copy: copy)
-            }
+            update()
         }
         self.copy = nil
         isEditing = false
@@ -62,15 +59,14 @@ public class UEVM: BaseVM, Identifiable, Equatable {
             self.coef = self.model.coef
         }
         if checkCoursesNotEquals() {
-            self.courses = self.model.courses.map { CourseVM(withModel: $0) }
+            self.courses = self.model.courses.map { createCourse(course: $0) }
         }
     }
     
-    func update(copy: UEVM) {
+    func update() {
         if let copy = self.copy {
-            self.name = copy.name
-            self.coef = copy.coef
-            self.courses = copy.courses
+            self.model = copy.model
+            
         }
     }
     
@@ -102,7 +98,6 @@ public class UEVM: BaseVM, Identifiable, Equatable {
             if checkCoursesNotEquals() {
                 self.model.courses = self.courses.map { $0.model }
             }
-            
         }
     }
     
@@ -110,7 +105,10 @@ public class UEVM: BaseVM, Identifiable, Equatable {
         return self.model.courses.count != self.courses.count
         || !self.model.courses.allSatisfy({ course in
             self.courses.contains { courseVM in
-                courseVM.model == course
+                courseVM.model.id == course.id
+                && courseVM.model.name == course.name
+                && courseVM.model.coef == course.coef
+                && courseVM.model.mark == course.mark
             }
         })
     }
@@ -123,5 +121,18 @@ public class UEVM: BaseVM, Identifiable, Equatable {
         if let index = model.courses.firstIndex(where: { $0.id == id }) {
             model.courses.remove(at: index)
         }
+    }
+    
+    private func courseVM_Changed(baseVM: BaseVM) {
+        if let courseVM = baseVM as? CourseVM {
+            self.model.updateCourse(from: courseVM.model)
+            objectWillChange.send()
+        }
+    }
+    
+    private func createCourse(course: Course) -> CourseVM {
+        let courseVM = CourseVM(withModel: course)
+        courseVM.addUpdatedCallback(callback: courseVM_Changed)
+        return courseVM
     }
 }
