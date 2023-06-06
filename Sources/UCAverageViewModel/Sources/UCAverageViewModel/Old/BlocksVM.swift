@@ -8,7 +8,7 @@
 import Foundation
 import UCAverageModel
 
-public class BlocksVM: ObservableObject {
+class BlocksVM: ObservableObject {
     
     @Published public var blocks: [Block]
     
