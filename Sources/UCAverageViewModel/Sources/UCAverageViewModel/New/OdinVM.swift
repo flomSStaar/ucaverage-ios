@@ -8,7 +8,7 @@
 import Foundation
 import UCAverageModel
 
-public class OdinVM {
+public class OdinVM: BaseVM {
 
     var model: [Block]
     
@@ -17,7 +17,9 @@ public class OdinVM {
     
     public init(from model: [Block]) {
         self.model = model
-        self.blocks = model.map { createBlockVM(with: $0) }
+        super.init()
+        
+        model.forEach { self.blocks.append(createBlockVM(with: $0)) }
     }
     
     private func createBlockVM(with model: Block) -> BlockVM {

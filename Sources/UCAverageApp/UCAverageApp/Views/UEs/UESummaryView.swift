@@ -10,17 +10,17 @@ import UCAverageViewModel
 import UCAverageStub
 
 struct UESummaryView: View {
-    @ObservedObject var ueVM: UEVM
+    @ObservedObject var unitVM: UnitVM
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             HStack {
-                Text(ueVM.name)
+                Text(unitVM.name)
                 Spacer()
-                Text("\(ueVM.coef)")
+                Text("\(unitVM.coef)")
             }
             
-            MarkSlider(mark: .constant(ueVM.average))
+            MarkSlider(mark: .constant(unitVM.average))
             Divider()
         }
     }
@@ -28,9 +28,9 @@ struct UESummaryView: View {
 
 struct UESummaryView_Previews: PreviewProvider {
     static var previews: some View {
-        let ue = loadUEs()[0]
+        let ue = loadUnits()[0]
         NavigationStack {
-            UESummaryView(ueVM: UEVM(withModel: ue))
+            UESummaryView(unitVM: UnitVM(withModel: ue))
                 .previewLayout(.sizeThatFits)
                 .padding()
         }

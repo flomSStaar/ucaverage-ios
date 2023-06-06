@@ -11,7 +11,8 @@ import UCAverageModel
 public class UnitVM: BaseVM, Identifiable, Equatable {
     
     @Published
-    public private(set) var isEditing: Bool = false
+    //TODO remettre le private(set)
+    public var isEditing: Bool = false
     
     @Published
     public private(set) var copy: UnitVM? = nil
@@ -19,6 +20,10 @@ public class UnitVM: BaseVM, Identifiable, Equatable {
     public init(withModel model: UCAUnit) {
         self.model = model
         super.init()
+        
+        self.name = model.name
+        self.coef = model.coef
+        self.courses = self.model.courses.map { createCourseVM(course: $0) }
     }
     
     @Published

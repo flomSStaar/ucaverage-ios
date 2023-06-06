@@ -98,3 +98,6 @@ public func loadBlocks() -> [Block] {
     return blocks
 }
 
+public func getStub() -> [Block] {
+    return [block1, block2]
+}

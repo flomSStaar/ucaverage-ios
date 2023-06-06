@@ -10,7 +10,7 @@ import UCAverageViewModel
 import UCAverageStub
 
 struct BlocksView: View {
-    @ObservedObject var blocksVM: BlocksVM
+    @ObservedObject var odinVM: OdinVM
 
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
@@ -20,8 +20,8 @@ struct BlocksView: View {
                 .padding(.bottom, 12)
 
             LazyVStack(spacing: 4) {
-                ForEach(blocksVM.blocks) { block in
-                    BlockRowView(blockVM: BlockVM(withModel: block))
+                ForEach(odinVM.blocks) { blockVM in
+                    BlockRowView(blockVM: blockVM)
                 }
             }
         }
@@ -35,9 +35,9 @@ struct BlocksView: View {
 
 struct BlocksView_Previews: PreviewProvider {
     static var previews: some View {
-        let blocks = loadBlocks()
+        let blocks = getStub()
         
-        BlocksView(blocksVM: BlocksVM(withBlocks: blocks))
+        BlocksView(odinVM: OdinVM(from: blocks))
             .previewLayout(.sizeThatFits)
     }
 }

@@ -12,14 +12,15 @@ import UCAverageStub
 @main
 struct UCAverageApp: App {
     @StateObject
-    var uesVM: UEsVM = UEsVM(withUEs: loadUEs())
-    
-    @StateObject
-    var blocksVM: BlocksVM = BlocksVM(withBlocks: loadBlocks())
+    var odinVM: OdinVM = OdinVM(from: getStub())
 
     var body: some Scene {
         WindowGroup {
-            HomePage(uesVM: uesVM, blocksVM: blocksVM)
+            HomePage(odinVM: odinVM)
+                .onAppear {
+                    let block = odinVM.blocks[0]
+                    print("Name: \(block.name)")
+                }
         }
     }
 }

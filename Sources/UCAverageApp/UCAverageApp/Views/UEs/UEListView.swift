@@ -10,7 +10,7 @@ import UCAverageStub
 import UCAverageViewModel
 
 struct UEListView: View {
-    @ObservedObject var uesVM: UEsVM
+    @ObservedObject var blockVM: BlockVM
     
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
@@ -20,12 +20,12 @@ struct UEListView: View {
                 .padding(.bottom, 12)
 
             LazyVStack(spacing: 8) {
-                ForEach(uesVM.ues, id: \.id) { ueVM in
+                ForEach(blockVM.units) { unitVM in
                     HStack(spacing: 8) {
-                        UESummaryView(ueVM: ueVM)
+                        UESummaryView(unitVM: unitVM)
 
                         NavigationLink {
-                            UEDetailPage(uesVM: uesVM, ueVM: ueVM)
+                            UEDetailPage(unitVM: unitVM)
                         } label: {
                             Image(systemName: "square.and.pencil")
                         }
@@ -44,10 +44,10 @@ struct UEListView: View {
 
 struct UEListView_Previews: PreviewProvider {
     static var previews: some View {
-        let ues = loadUEs()
+        let block = loadBlocks()[0]
         
         NavigationStack {
-            UEListView(uesVM: UEsVM(withUEs: ues))
+            UEListView(blockVM: BlockVM(withModel: block))
         }
         .previewLayout(.sizeThatFits)
     }

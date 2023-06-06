@@ -8,7 +8,7 @@
 import Foundation
 import UCAverageModel
 
-public class BlockVM: BaseVM, Equatable {
+public class BlockVM: BaseVM, Identifiable, Equatable {
     
     @Published
     public private(set) var isEditing: Bool = false
@@ -19,6 +19,9 @@ public class BlockVM: BaseVM, Equatable {
     public init(withModel model: Block) {
         self.model = model
         super.init()
+        
+        self.name = model.name
+        self.units = self.model.units.map { createUnitVM(unit: $0) }
     }
     
     @Published

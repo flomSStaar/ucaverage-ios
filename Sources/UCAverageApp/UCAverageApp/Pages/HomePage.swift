@@ -10,20 +10,25 @@ import UCAverageViewModel
 import UCAverageStub
 
 struct HomePage: View {
-    @ObservedObject var uesVM: UEsVM
-    @ObservedObject var blocksVM: BlocksVM
-    
+    @ObservedObject var odinVM: OdinVM
+
     var body: some View {
         NavigationStack {
             ScrollView {
-                BlocksView(blocksVM: blocksVM)
+                BlocksView(odinVM: odinVM)
                     .padding(.horizontal, 10)
                 
                 Divider()
                     .padding(.vertical, 10)
                 
-                UEListView(uesVM: uesVM)
-                    .padding(.horizontal, 10)
+                let totalBlockVM = odinVM.blocks.first { $0.name == "Total" }
+                if let totalBlockVM {
+                    UEListView(blockVM: totalBlockVM)
+                        .padding(.horizontal, 10)
+                } else {
+                    Text("Une erreur est survenue lors de la récupération des UEs")
+                }
+                
             }
             .navigationTitle("Calculette")
         }
@@ -32,9 +37,7 @@ struct HomePage: View {
 
 struct HomePage_Previews: PreviewProvider {
     static var previews: some View {
-        let uesVM: UEsVM = UEsVM(withUEs: loadUEs())
-        let blocksVM: BlocksVM = BlocksVM(withBlocks: loadBlocks())
-        
-        HomePage(uesVM: uesVM, blocksVM: blocksVM)
+        let blocks = getStub()
+        HomePage(odinVM: OdinVM(from: blocks))
     }
 }

@@ -10,7 +10,7 @@ import UCAverageViewModel
 import UCAverageStub
 
 struct UEEditView: View {
-    @ObservedObject var ueVM: UEVM
+    @ObservedObject var unitVM: UnitVM
     
     var body: some View {
         ScrollView {
@@ -23,14 +23,14 @@ struct UEEditView: View {
                 VStack(alignment: .leading, spacing: 0) {
                     Text("Nom de l'UE")
                         .fontWeight(.bold)
-                    TextField("Nom", text: $ueVM.name)
+                    TextField("Nom", text: $unitVM.name)
                 }
                 
                 VStack(alignment: .leading, spacing: 0) {
                     Text("Coefficient de l'UE")
                         .fontWeight(.bold)
                     TextField("Coefficient",
-                              value: $ueVM.coef,
+                              value: $unitVM.coef,
                               format: .number)
                 }
                 
@@ -46,7 +46,7 @@ struct UEEditView: View {
                     
                     Button {
                         withAnimation(.easeInOut) {
-                            ueVM.addCourse(withName: "Nouvelle matière", andCoef: 1, andMark: 0)
+                            unitVM.addCourse(withName: "Nouvelle matière", andCoef: 1, andMark: 0)
                         }
                     } label: {
                         Image(systemName: "plus.circle.fill")
@@ -55,14 +55,14 @@ struct UEEditView: View {
                 }
 
                 LazyVStack(spacing: 12) {
-                    ForEach(ueVM.courses) { courseVM in
+                    ForEach(unitVM.courses) { courseVM in
                         VStack {
                             HStack(spacing: 16) {
                                 CourseEditView(courseVM: courseVM)
                                 
                                 Button {
                                     withAnimation(.easeInOut) {
-                                        ueVM.removeCourse(withId: courseVM.id)
+                                        unitVM.removeCourse(withId: courseVM.id)
                                     }
                                 } label: {
                                     Image(systemName: "minus.circle.fill")
@@ -81,7 +81,7 @@ struct UEEditView: View {
 
 struct UEEditView_Previews: PreviewProvider {
     static var previews: some View {
-        let ue = loadUEs()[0]
-        UEEditView(ueVM: UEVM(withModel: ue))
+        let ue = loadUnits()[0]
+        UEEditView(unitVM: UnitVM(withModel: ue))
     }
 }
