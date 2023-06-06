@@ -12,7 +12,7 @@ public struct UCAUnit: Identifiable, Equatable {
     public let id: UUID
     public var name: String
     public var coef: Int
-    public var courses: [Course] = []
+    public var courses: [Course]
     
     public var average: Float {
         var totalCoef: Float = 0
@@ -29,13 +29,32 @@ public struct UCAUnit: Identifiable, Equatable {
     }
     
     public init(withId id: UUID, andName name: String, andCoef coef: Int) {
+        self.init(withId: id, andName: name, andCoef: coef, andCourses: [])
+    }
+    
+    public init(withName name: String, andCoef coef: Int, andCourses courses: [Course]) {
+        self.init(withId: UUID(), andName: name, andCoef: coef, andCourses: [])
+    }
+    
+    public init(withId id: UUID, andName name: String, andCoef coef: Int, andCourses courses: [Course]) {
         self.id = id
         self.name = name
         self.coef = coef
+        self.courses = courses
     }
     
     public init(withName name: String, andCoef coef: Int) {
         self.init(withId: UUID(), andName: name, andCoef: coef)
+    }
+    
+    public mutating func addCourse(withName name: String, andCoef coef: Int, andMark mark: Float) {
+        self.courses.append(Course(withName: name, andCoef: coef, andMark: mark))
+    }
+    
+    public mutating func removeCourse(withId id: UUID) {
+        if let index = self.courses.firstIndex(where: { $0.id == id }) {
+            self.courses.remove(at: index)
+        }
     }
     
     public mutating func updateCourse(from course: Course) {

@@ -90,13 +90,11 @@ public class UnitVM: BaseVM, Identifiable, Equatable {
     }
     
     public func addCourse(withName name: String, andCoef coef: Int, andMark mark: Float) {
-        model.courses.append(Course(withName: name, andCoef: coef, andMark: mark))
+        self.model.addCourse(withName: name, andCoef: coef, andMark: mark)
     }
     
     public func removeCourse(withId id: UUID) {
-        if let index = model.courses.firstIndex(where: { $0.id == id }) {
-            model.courses.remove(at: index)
-        }
+        self.model.removeCourse(withId: id)
     }
     
     private func checkCoursesNotEquals() -> Bool {
