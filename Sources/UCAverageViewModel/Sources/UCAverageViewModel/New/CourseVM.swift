@@ -10,18 +10,16 @@ import UCAverageModel
 
 public class CourseVM: BaseVM, Identifiable {
     
+    @Published
+    public private(set) var isEditing: Bool = false
+    
+    @Published
+    public private(set) var copy: CourseVM? = nil
+    
     public init(withModel model: Course) {
         super.init()
         self.model = model
     }
-    
-    @Published
-    public var isEditing: Bool = false
-    
-    @Published
-    public var copy: CourseVM? = nil
-    
-    public var id: UUID { model.id }
     
     @Published
     public private(set) var model: Course = Course(withName: "", andCoef: 0, andMark: 0) {
@@ -39,6 +37,8 @@ public class CourseVM: BaseVM, Identifiable {
             onModelChanged()
         }
     }
+    
+    public var id: UUID { model.id }
     
     @Published
     public var name: String = "" {
@@ -83,9 +83,7 @@ public class CourseVM: BaseVM, Identifiable {
     
     private func update() {
         if let copy = self.copy {
-            self.name = copy.name
-            self.coef = copy.coef
-            self.mark = copy.mark
+            self.model = copy.model
         }
     }
 }

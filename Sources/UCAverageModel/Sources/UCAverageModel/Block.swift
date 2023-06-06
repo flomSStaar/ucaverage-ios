@@ -10,13 +10,13 @@ import Foundation
 public struct Block: Identifiable {
     public let id: UUID
     public var name: String
-    public var ues: [UE] = []
+    public var units: [UCAUnit] = []
     
     public var average: Float {
         var totalCoef: Float = 0
         var totalMarks: Float = 0
         
-        ues.forEach { ue in
+        units.forEach { ue in
             totalCoef += Float(ue.coef)
             totalMarks += ue.average * Float(ue.coef)
         }
@@ -33,5 +33,13 @@ public struct Block: Identifiable {
     
     public init(withName name: String) {
         self.init(withId: UUID(), andName: name)
+    }
+    
+    public mutating func updateUnit(from unit: UCAUnit) {
+        let index = self.units.firstIndex(of: unit)
+        
+        if let index {
+            self.units[index] = unit
+        }
     }
 }

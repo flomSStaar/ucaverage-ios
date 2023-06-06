@@ -10,14 +10,13 @@ import UCAverageViewModel
 import UCAverageStub
 
 struct BlockRowView: View {
-    //var block: Block
     var blockVM: BlockVM
 
     var body: some View {
         HStack {
-            Label(blockVM.original.name, systemImage: "doc.on.doc.fill")
+            Label(blockVM.name, systemImage: "doc.on.doc.fill")
             Spacer()
-            Text(String(format: "%.2f", blockVM.original.average))
+            Text(String(format: "%.2f", blockVM.average))
             Image(systemName: "graduationcap.circle.fill")
         }
     }
@@ -27,6 +26,6 @@ struct BlockRowView_Previews: PreviewProvider {
     static var previews: some View {
         let block = loadBlocks()[0]
 
-        BlockRowView(blockVM: BlockVM(withBlock: block))
+        BlockRowView(blockVM: BlockVM(withModel: block))
     }
 }

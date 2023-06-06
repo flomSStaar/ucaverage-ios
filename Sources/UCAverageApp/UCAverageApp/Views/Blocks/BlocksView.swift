@@ -21,7 +21,7 @@ struct BlocksView: View {
 
             LazyVStack(spacing: 4) {
                 ForEach(blocksVM.blocks) { block in
-                    BlockRowView(blockVM: BlockVM(withBlock: block))
+                    BlockRowView(blockVM: BlockVM(withModel: block))
                 }
             }
         }

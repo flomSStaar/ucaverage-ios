@@ -25,4 +25,11 @@ public struct Course: Identifiable, Equatable {
     public init(withName name: String, andCoef coef: Int, andMark mark: Float) {
         self.init(withId: UUID(), andName: name, andCoef: coef, andMark: mark)
     }
+    
+    public func same(with other: Course) -> Bool {
+        return self.id == other.id
+        && self.name == other.name
+        && self.coef == other.coef
+        && self.mark == other.mark
+    }
 }
