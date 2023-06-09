@@ -18,16 +18,16 @@ public class UnitVM: BaseVM, Identifiable, Equatable {
     public private(set) var copy: UnitVM? = nil
     
     public init(withModel model: UCAUnit) {
-        self.model = model
         super.init()
         
-        self.name = model.name
-        self.coef = model.coef
-        self.courses = self.model.courses.map { createCourseVM(course: $0) }
+        // defer allows to call didSet in the constructor
+        defer {
+            self.model = model
+        }
     }
     
     @Published
-    var model: UCAUnit {
+    var model: UCAUnit = UCAUnit(withName: "", andCoef: 0) {
         didSet {
             if self.name != self.model.name {
                 self.name = self.model.name
@@ -50,8 +50,8 @@ public class UnitVM: BaseVM, Identifiable, Equatable {
     @Published
     public var name: String = "" {
         didSet {
-            if self.name != self.model.name {
-                self.name = self.model.name
+            if self.model.name != self.name {
+                self.model.name = self.name
             }
         }
     }
@@ -59,8 +59,8 @@ public class UnitVM: BaseVM, Identifiable, Equatable {
     @Published
     public var coef: Int = 0 {
         didSet {
-            if self.coef != self.model.coef {
-                self.coef = self.model.coef
+            if self.model.coef != self.coef {
+                self.model.coef = self.coef
             }
         }
     }

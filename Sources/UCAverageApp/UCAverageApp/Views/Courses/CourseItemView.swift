@@ -12,6 +12,9 @@ import UCAverageStub
 struct CourseItemView: View {
     @ObservedObject var courseVM: CourseVM
     
+    /// isEditable is nullable to allow to use the isEditing boolean
+    var isEditable: Bool?
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             HStack {
@@ -20,7 +23,7 @@ struct CourseItemView: View {
                 Text("\(courseVM.coef)")
             }
             
-            MarkSlider(mark: $courseVM.mark, isEditable: courseVM.isEditing)
+            MarkSlider(mark: $courseVM.mark, isEditable: isEditable ?? courseVM.isEditing)
                 .frame(height: 24)
             
             Divider()

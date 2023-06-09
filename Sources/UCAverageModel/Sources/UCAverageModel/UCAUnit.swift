@@ -33,7 +33,7 @@ public struct UCAUnit: Identifiable, Equatable {
     }
     
     public init(withName name: String, andCoef coef: Int, andCourses courses: [Course]) {
-        self.init(withId: UUID(), andName: name, andCoef: coef, andCourses: [])
+        self.init(withId: UUID(), andName: name, andCoef: coef, andCourses: courses)
     }
     
     public init(withId id: UUID, andName name: String, andCoef coef: Int, andCourses courses: [Course]) {
@@ -72,5 +72,9 @@ public struct UCAUnit: Identifiable, Equatable {
         && self.courses.elementsEqual(other.courses, by: { c1, c2 in
             c1.same(with: c2)
         })
+    }
+    
+    public static func == (lhs: UCAUnit, rhs: UCAUnit) -> Bool {
+        lhs.id == rhs.id
     }
 }

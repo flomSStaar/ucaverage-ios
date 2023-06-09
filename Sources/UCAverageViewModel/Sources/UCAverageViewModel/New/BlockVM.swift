@@ -17,15 +17,16 @@ public class BlockVM: BaseVM, Identifiable, Equatable {
     public private(set) var copy: BlockVM? = nil
     
     public init(withModel model: Block) {
-        self.model = model
         super.init()
         
-        self.name = model.name
-        self.units = self.model.units.map { createUnitVM(unit: $0) }
+        // defer allows to call didSet in the constructor
+        defer {
+            self.model = model
+        }
     }
     
     @Published
-    var model: Block {
+    var model: Block = Block(withName: "") {
         didSet {
             if self.name != self.model.name {
                 self.name = self.model.name

@@ -17,10 +17,6 @@ struct UCAverageApp: App {
     var body: some Scene {
         WindowGroup {
             HomePage(odinVM: odinVM)
-                .onAppear {
-                    let block = odinVM.blocks[0]
-                    print("Name: \(block.name)")
-                }
         }
     }
 }

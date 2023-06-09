@@ -10,7 +10,7 @@ import UCAverageViewModel
 import UCAverageStub
 
 struct BlockRowView: View {
-    var blockVM: BlockVM
+    @ObservedObject var blockVM: BlockVM
 
     var body: some View {
         HStack {

@@ -18,11 +18,11 @@ public class CourseVM: BaseVM, Identifiable {
     
     public init(withModel model: Course) {
         super.init()
-        self.model = model
         
-        self.name = model.name
-        self.coef = model.coef
-        self.mark = model.mark
+        // defer allows to call didSet in the constructor
+        defer {
+            self.model = model
+        }
     }
     
     @Published

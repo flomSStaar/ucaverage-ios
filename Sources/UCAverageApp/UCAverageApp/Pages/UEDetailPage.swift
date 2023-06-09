@@ -38,7 +38,7 @@ struct UEDetailPage: View {
                 Button {
                     unitVM.onEditing()
                 } label: {
-                    Text("Edit")
+                    Text("Modifier")
                 }
             }
         }
@@ -47,12 +47,12 @@ struct UEDetailPage: View {
                 UEEditView(unitVM: unitVM.copy!)
                     .toolbar {
                         ToolbarItem(placement: .confirmationAction) {
-                            Button("Done") {
+                            Button("Valider") {
                                 unitVM.onEdited()
                             }
                         }
                         ToolbarItem(placement: .cancellationAction) {
-                            Button("Cancel") {
+                            Button("Annuler") {
                                 unitVM.onEdited(isCancelled: true)
                             }
                         }

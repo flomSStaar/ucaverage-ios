@@ -11,21 +11,18 @@ import UCAverageStub
 
 struct CourseView: View {
     @ObservedObject var courseVM: CourseVM
+    @State private var isEditing: Bool = false
 
     var body: some View {
         HStack(spacing: 16) {
             Button {
-                if courseVM.isEditing {
-                    courseVM.onEdited()
-                } else {
-                    courseVM.onEditing()
-                }
+                isEditing.toggle()
             } label: {
-                Image(systemName: courseVM.isEditing ? "lock.open" : "lock")
+                Image(systemName: isEditing ? "lock.open" : "lock")
                     .frame(width: 24)
             }
             
-            CourseItemView(courseVM: courseVM)
+            CourseItemView(courseVM: courseVM, isEditable: isEditing)
         }
     }
 }

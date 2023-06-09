@@ -13,8 +13,6 @@ public struct Course: Identifiable, Equatable {
     public var coef: Int
     public var mark: Float
     
-    public static func == (lhs: Course, rhs: Course) -> Bool { lhs.id == rhs.id }
-    
     public init(withId id: UUID, andName name: String, andCoef coef: Int, andMark mark: Float) {
         self.id = id
         self.name = name
@@ -25,6 +23,8 @@ public struct Course: Identifiable, Equatable {
     public init(withName name: String, andCoef coef: Int, andMark mark: Float) {
         self.init(withId: UUID(), andName: name, andCoef: coef, andMark: mark)
     }
+    
+    public static func == (lhs: Course, rhs: Course) -> Bool { lhs.id == rhs.id }
     
     public func same(with other: Course) -> Bool {
         return self.id == other.id

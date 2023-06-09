@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Block: Identifiable {
+public struct Block: Identifiable, Equatable {
     public let id: UUID
     public var name: String
     public var units: [UCAUnit]
@@ -50,5 +50,9 @@ public struct Block: Identifiable {
         if let index {
             self.units[index] = unit
         }
+    }
+    
+    public static func == (lhs: Block, rhs: Block) -> Bool {
+        lhs.id == rhs.id
     }
 }

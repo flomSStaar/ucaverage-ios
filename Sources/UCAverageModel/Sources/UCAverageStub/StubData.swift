@@ -53,12 +53,12 @@ var unit5 = UCAUnit(withName: "UE 5 : Technologies Mobiles 2", andCoef: 9, andCo
 ])
 
 // UE6
-var unit6 = UCAUnit(withName: "Projet", andCoef: 1, andCourses: [
+var unit6 = UCAUnit(withName: "UE 6 : Projet", andCoef: 1, andCourses: [
     Course(withName: "Projet", andCoef: 1, andMark: 10)
 ])
 
 // UE7
-var unit7 = UCAUnit(withName: "Stage", andCoef: 1, andCourses: [
+var unit7 = UCAUnit(withName: "UE 7 : Stage", andCoef: 1, andCourses: [
     Course(withName: "Stage", andCoef: 1, andMark: 10)
 ])
 
