@@ -11,7 +11,7 @@ import UCAverageStub
 
 struct CourseView: View {
     @ObservedObject var courseVM: CourseVM
-    @State private var isEditing: Bool = false
+    @State private var isEditing: Bool = true
 
     var body: some View {
         HStack(spacing: 16) {

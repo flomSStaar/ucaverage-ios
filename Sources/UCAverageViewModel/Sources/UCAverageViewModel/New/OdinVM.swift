@@ -25,7 +25,21 @@ public class OdinVM: BaseVM {
     private func blockVM_Changed(baseVM: BaseVM) {
         if let blockVM = baseVM as? BlockVM {
             if let index = self.blocks.firstIndex(of: blockVM) {
+                // update the model corresponding to the vm passed as parameter
                 self.model[index] = blockVM.model
+                
+                // update other block with new value
+                for unit in blockVM.units {
+                    for i in 0..<self.model.count {
+                        if i == index { continue }
+                        
+                        if model[i].units.contains(where: { $0.id == unit.id }) {
+                            model[i].updateUnit(from: unit.model)
+                        }
+                    }
+                }
+                
+                // refresh all vms
                 self.blocks = self.model.map { createBlockVM(with: $0) }
                 objectWillChange.send()
             }
