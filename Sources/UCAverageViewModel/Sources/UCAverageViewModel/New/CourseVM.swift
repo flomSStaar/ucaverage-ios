@@ -8,7 +8,7 @@
 import Foundation
 import UCAverageModel
 
-public class CourseVM: BaseVM, Identifiable {
+public class CourseVM: BaseVM, Identifiable, Equatable {
     
     @Published
     public private(set) var isEditing: Bool = false
@@ -90,4 +90,9 @@ public class CourseVM: BaseVM, Identifiable {
             self.model = copy.model
         }
     }
+
+    public static func == (lhs: CourseVM, rhs: CourseVM) -> Bool {
+        lhs.id == rhs.id
+    }
+    
 }

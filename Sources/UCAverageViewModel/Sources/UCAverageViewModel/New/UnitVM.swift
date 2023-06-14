@@ -35,9 +35,12 @@ public class UnitVM: BaseVM, Identifiable, Equatable {
             if self.coef != self.model.coef {
                 self.coef = self.model.coef
             }
-            if checkCoursesNotEquals() {
+            if !self.model.courses.compare(to: self.courses.map { $0.model }) {
                 self.courses = self.model.courses.map { createCourseVM(course: $0) }
             }
+            //            if checkCoursesNotEquals() {
+            //                self.courses = self.model.courses.map { createCourseVM(course: $0) }
+            //            }
             
             onModelChanged()
         }
@@ -68,9 +71,13 @@ public class UnitVM: BaseVM, Identifiable, Equatable {
     @Published
     public var courses: [CourseVM] = [] {
         didSet {
-            if checkCoursesNotEquals() {
-                self.model.courses = self.courses.map { $0.model }
+            let courseModels = self.courses.map { $0.model }
+            if !self.model.courses.compare(to: courseModels) {
+                self.model.courses = courseModels
             }
+            //            if checkCoursesNotEquals() {
+            //                self.model.courses = self.courses.map { $0.model }
+            //            }
         }
     }
     

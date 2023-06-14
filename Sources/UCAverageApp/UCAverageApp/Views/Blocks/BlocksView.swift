@@ -27,7 +27,7 @@ struct BlocksView: View {
                         Text(String(format: "%.2f", blockVM.average))
                         Image(systemName: "graduationcap.circle.fill")
                     }
-                    //BlockRowView(blockVM: blockVM)
+//                    BlockRowView(blockVM: blockVM)
                 }
             }
         }
