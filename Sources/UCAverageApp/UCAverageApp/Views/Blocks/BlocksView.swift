@@ -21,13 +21,7 @@ struct BlocksView: View {
 
             LazyVStack(spacing: 4) {
                 ForEach(odinVM.blocks) { blockVM in
-                    HStack {
-                        Label(blockVM.name, systemImage: "doc.on.doc.fill")
-                        Spacer()
-                        Text(String(format: "%.2f", blockVM.average))
-                        Image(systemName: "graduationcap.circle.fill")
-                    }
-//                    BlockRowView(blockVM: blockVM)
+                    BlockRowView(blockVM: blockVM)
                 }
             }
         }
