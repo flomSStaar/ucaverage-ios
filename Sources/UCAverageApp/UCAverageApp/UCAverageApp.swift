@@ -12,7 +12,7 @@ import UCAverageStub
 @main
 struct UCAverageApp: App {
     @StateObject
-    var odinVM: OdinVM = OdinVM(from: getStub())
+    var odinVM: OdinVM = OdinVM(from: Stub().load())
 
     var body: some Scene {
         WindowGroup {

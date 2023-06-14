@@ -7,6 +7,7 @@
 
 import Foundation
 import UCAverageModel
+import UCAverageData
 
 public func loadCourses() -> [Course] {
     var courses: [Course] = []
@@ -100,4 +101,17 @@ public func loadBlocks() -> [Block] {
 
 public func getStub() -> [Block] {
     return [block1, block2]
+}
+
+public class Stub: DataManagerProtocol {
+    
+    public init() {}
+    
+    public func load() -> [UCAverageModel.Block] {
+        return [block1, block2]
+    }
+    
+    public func save(_ blocks: [UCAverageModel.Block]) {
+        print("saving in stub")
+    }
 }
