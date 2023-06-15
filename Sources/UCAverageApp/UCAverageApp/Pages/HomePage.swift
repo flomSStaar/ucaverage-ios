@@ -26,7 +26,7 @@ struct HomePage: View {
                     UEListView(blockVM: totalBlockVM)
                         .padding(.horizontal, 10)
                 } else {
-                    Text("Une erreur est survenue lors de la récupération des UEs")
+                    Text("Aucune UE à afficher")
                 }
                 
             }

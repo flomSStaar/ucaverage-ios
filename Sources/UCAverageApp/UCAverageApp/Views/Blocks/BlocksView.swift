@@ -24,6 +24,11 @@ struct BlocksView: View {
                     BlockRowView(blockVM: blockVM)
                 }
             }
+            .overlay {
+                if odinVM.blocks.isEmpty {
+                    Text("Aucun bloc à afficher")
+                }
+            }
         }
         .padding(.vertical, 16)
         .padding(.horizontal, 20)

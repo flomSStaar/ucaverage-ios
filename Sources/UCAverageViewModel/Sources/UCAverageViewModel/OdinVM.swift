@@ -18,10 +18,13 @@ public class OdinVM: BaseVM {
     public private(set) var blocks: [BlockVM] = []
     
     public init(from model: [Block]) {
-//        self.model = model
         super.init()
         
         model.forEach { self.blocks.append(createBlockVM(with: $0)) }
+    }
+    
+    public func load(_ blocks: [Block]) {
+        self.blocks = blocks.map { createBlockVM(with: $0) }
     }
     
     private func blockVM_Changed(baseVM: BaseVM) {
