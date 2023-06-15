@@ -9,6 +9,6 @@ import Foundation
 import UCAverageModel
 
 public protocol DataManagerProtocol {
-    func load() -> [Block]
-    func save(_ blocks: [Block])
+    func load() async throws -> [Block]
+    func save(_ blocks: [Block]) async throws
 }

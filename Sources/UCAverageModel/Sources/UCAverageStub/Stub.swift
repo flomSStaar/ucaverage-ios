@@ -107,11 +107,11 @@ public class Stub: DataManagerProtocol {
     
     public init() {}
     
-    public func load() -> [UCAverageModel.Block] {
+    public func load() -> [Block] {
         return [block1, block2]
     }
     
-    public func save(_ blocks: [UCAverageModel.Block]) {
+    public func save(_ blocks: [Block]) {
         print("saving in stub")
     }
 }

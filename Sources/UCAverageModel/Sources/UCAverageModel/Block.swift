@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Block: Identifiable, Equatable {
+public struct Block: Identifiable, Equatable, Codable {
     public let id: UUID
     public var name: String
     public var units: [UCAUnit]

@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Course: Identifiable, Equatable {
+public struct Course: Identifiable, Equatable, Codable {
     public let id: UUID
     public var name: String
     public var coef: Int
