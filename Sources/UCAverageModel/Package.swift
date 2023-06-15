@@ -16,6 +16,9 @@ let package = Package(
         .library(
             name: "UCAverageData",
             targets: ["UCAverageData"]),
+        .library(
+            name: "UCAverageJson",
+            targets: ["UCAverageJson"]),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -32,11 +35,12 @@ let package = Package(
             dependencies: ["UCAverageModel"]),
         .target(
             name: "UCAverageData",
-            dependencies: ["UCAverageModel"]
-        ),
+            dependencies: ["UCAverageModel"]),
         .target(
             name: "UCAverageStub",
-            dependencies: ["UCAverageModel", "UCAverageData"]
-        )
+            dependencies: ["UCAverageModel", "UCAverageData"]),
+        .target(
+            name: "UCAverageJson",
+            dependencies: ["UCAverageModel", "UCAverageData"]),
     ]
 )
