@@ -1,76 +1,156 @@
-# iOS_TP2_2023_CalculetteMoyenne
+# UCAverage
 
 [![Build Status](https://codefirst.iut.uca.fr/api/badges/florent.marques/ucaverage-ios/status.svg?ref=refs/heads/main)](https://codefirst.iut.uca.fr/florent.marques/ucaverage-ios)
 
-_À rendre pour le dimanche 04 juin 2023 - 23h59_  
-_Rappel: les retards sont sanctionnés à raison de 1 point par heure commencée (par exemple, rendu à 2h23 le lundi 05 juin => -3 points_)
+# Overview
 
-**Réaliser une application de simulation et de calcul de moyenne**
+<img src="Documentation/images/uca_icon.png" width="100" />
 
-# Maquette
-Une maquette est faite de la manière suivante:
-- il faut la moyenne à tous les ```Bloc```s pour avoir son diplôme,
-- la note d'```Bloc``` est la moyenne pondérée des ```UE```s le composant
-- la note d'une ```UE``` est la moyenne pondérée des ```Matière```s la composant
+This project is a calculator developed with SwiftUI that calculates your average. It allows you to display your notes in each block and each subject. A color code is in place to let you know if you have a good grade or not. You can simulate your notes by adjusting the sliders.
 
-En LP PM, il y a 7 ```UE```s et 2 ```Bloc```s.  
-  
-Liste des ```UE```s et de leurs ```Matière```s:
-1. **UE 1 : Génie Logiciel (coeff. 6)**
-  - Processus de développement (coeff. 4)
-  - Programmation Objets (coeff. 9)
-  - Qualité de développpement (coeff. 5)
-  - Remise à niveau objets (coeff. 4)
-2. **UE 2 : Systèmes et réseaux (coeff. 6)**
-  - Internet des Objets (coeff. 4)
-  - Réseaux (coeff. 4)
-  - Services Mobiles (coeff. 4)
-  - Système (coeff. 5)
-3. **UE 3 : Insertion Professionnelle (coeff. 6)**
-  - Anglais (coeff. 5)
-  - Economie (coeff. 4)
-  - Gestion (coeff. 3)
-  - Communication (coeff. 4)
-4. **UE 4 : Technologies Mobiles 1 (coeff. 9)**
-  - Android (coeff. 6)
-  - Architecture de projets C# .NET (1) (coeff. 5)
-  - C++ (coeff. 4)
-  - Swift (coeff. 5)
-5. **UE 5 : Technologies Mobiles 2 (coeff. 9)**
-  - Architecture de projets C# .NET (2) (coeff. 4)
-  - Client/Serveur (coeff. 4)
-  - iOS (coeff. 5)
-  - Multiplateformes (coeff. 3)
-  - QT Quick (coeff. 5)
-  - Xamarin (coeff. 5)
-6. **UE 6 : Projet (coeff. 9)**
-  - Projet (coeff. 1)
-7. **UE 7 : Stage (coeff. 15)**
-  - Stage (coeff. 1)
+This project uses an MVVM architecture adapted for SwiftUI. You can find some explanation [here](#mvvm-architecture).
 
-Liste des ```Bloc```s:
-1. Total (```UE```s 1, 2, 3, 4, 5, 6 et 7)
-2. Projet/Stage (```UE```s 6 et 7)
+You can find the instructions [here](CONSIGNES.md).
 
-# Captures d'écran
+# Screenshots
+<img src="Documentation/images/home.png" width="300" />
+<img src="Documentation/images/unit.png" width="300" />
+<img src="Documentation/images/unit_edition.png" width="300" />
+<img src="Documentation/images/unit_edition_add_course.png" width="300" />
 
-Voici des exemples de ce qui est attendu:  
-## Page 1 : Résumé des notes des ```Bloc```s et des ```UE```s
-On peut avoir accès **en lecture** aux notes des ```Bloc```s et des ```UE```s, mais on ne peut pas les modifier.  
-On peut cliquer sur l'image à droite de l'UE pour obtenir les détails de l'```UE``` et passer à la page suivante.  
-![Page 1](./Documentation/images/calculette_01.png)
+# Features
+- [X] List all blocks
+- [X] List all units
+- [X] Detail of one unit
+- [X] List courses in unit
+- [X] `Capsule`
+    - [X] Adjust grade of the course
+    - [X] Lock `Capsule` to lock the grade
+    - [X] Color code
+- [X] Edit unit
+    - [X] Name
+    - [X] Coefficient
+    - [X] Add course in unit
+    - [X] Edit course in unit
+    - [X] Delete course in unit
+- [X] Json persistence
+- [x] Navigation
+- [X] Pages
+- [X] Custom Views
+- [X] Bindings (State, Binding, StateObject, ObservedObject)
 
-## Page 2 : Notes de l'UE
-On a accès aux notes de l'```UE```. On peut cliquer sur le cadenas pour passer en mode édition de la note et on gère alors le geste sur la capsule. Si la note est < 10, la capsule est en rouge (sauf pour Maia, en vert). Si la note est >= 10, la capsule est en vert (sauf pour Maia, en rouge).  
-Un tap sur _Edit_ permet de passer en mode édition.  
-![Page 2](./Documentation/images/calculette_02.png)
+# MVVM Architecture
 
-## Page 3 : Edition de l'UE
-En mode édition, on peut changer :
-- le coeff. de l'```UE```
-- la description de l'```UE```
-- ajouter des ```Matière```s
-- enlever des ```Matière```s
-- modifier des ```Matière```s
-  - changer le nom 
-  - changer le coefficient 
+In this section, I will explain the concept of MVVM architecture in SwiftUI. All the architecture is explained [here](https://codefirst.iut.uca.fr/documentation/mchSamples_Apple/docusaurus/iOS_MVVM_guide/docs/intro/).
+
+## Model
+
+Apple strongly recommends using **structures** in Swift. So we will follow the guidelines to write our model.
+
+```plantuml
+@startuml
+
+protocol Identifiable
+protocol Equatable
+protocol Codable
+
+note as n1
+    All the structures implements the
+    protocols Identifiable, Equatable and Codable
+end note
+
+n1 .. Identifiable
+n1 .. Codable
+n1 .. Equatable
+
+struct Block {
+    + id: UUID
+    + name: String
+    + average: Float
+
+    + init(id: UUID, name: String, units: [UCAUnit])
+    + init(id: UUID, name: String)
+    + init(name: String, units: [UCAUnit])
+    + init(name: String)
+
+    + updateUnit(unit: UCAUnit)
+}
+
+note left of Block::average
+    This field is a computed value
+    that calculate the weighted
+    average of all units in the block.
+end note
+
+struct UCAUnit {
+    + id: UUID
+    + name: String
+    + coef: Int
+    + average: Float
+
+    + init(id: UUID, name: String, coef: Int, courses: [Course])
+    + init(id: UUID, name: String, coef: Int)
+    + init(name: String, coef: Int, courses: [Course])
+    + init(name: String, coef: Int)
+
+    + addCourse(name: String, coef: Int, mark: Float)
+    + updateCourse(course: Course)
+    + removeCourse(id: UUID)
+
+    + same(other: Course): Bool
+}
+
+note left of UCAUnit::average
+    This field is a computed value
+    that calculate the weighted
+    average of all the courses in the unit.
+end note
+
+struct Course {
+    + id: UUID
+    + name: String
+    + coef: Int
+    + mark: Float
+
+    + init(id: UUID, name: String, coef: Int, mark: Float)
+    + init(name: String, coef: Int, mark: Float)
+
+    + same(other: Course): Bool
+}
+
+protocol DataManagerProtocol {
+    load(): [Block]
+    save(blocks: [Block])
+}
+
+UCAUnit --> "courses *" Course
+Block --> "units *" UCAUnit
+
+@enduml
+```
+
+## Views
+
+## ViewModels
+
+# Getting Started
+
+## Prerequisites
+- iOS 13
+- XCode 14.3
+- iOS Simulator or iOS Device
+
+## Installation
+1. Clone the repo
+   ```sh
+   git clone https://codefirst.iut.uca.fr/git/florent.marques/ucaverage-ios.git
+    ```
+2. Open the project with XCode
+3. Run the project on iOS Simulator or iOS Device
+4. Enjoy your application
+
+# Authors
+
+- Florent Marques
+    - [![Florent Marques](https://img.shields.io/badge/-flomSStaar-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/flomSStaar)
+    - [![Florent Marques](https://img.shields.io/badge/-Florent%20Marques-0077B5?style=flat-square&logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/florent-marques)
