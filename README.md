@@ -8,7 +8,7 @@
 
 This project is a calculator developed with SwiftUI that calculates your average. It allows you to display your notes in each block and each subject. A color code is in place to let you know if you have a good grade or not. You can simulate your notes by adjusting the sliders.
 
-This project uses an MVVM architecture adapted for SwiftUI. You can find some explanation [here](#mvvm-architecture).
+This project uses an MVVM architecture adapted for SwiftUI. You can find some explanations [here](#mvvm-architecture).
 
 You can find the instructions [here](CONSIGNES.md).
 
@@ -38,6 +38,8 @@ You can find the instructions [here](CONSIGNES.md).
 - [X] Pages
 - [X] Custom Views
 - [X] Bindings (State, Binding, StateObject, ObservedObject)
+- [ ] Notifications with `Hashable`
+- [ ] Generic Viewmodel for editing
 
 # MVVM Architecture
 
@@ -131,7 +133,162 @@ Block --> "units *" UCAUnit
 
 ## Views
 
+The views will bind to the property wrapped by the viewmodel and will send user actions to the viewmodel to execute logics.
+
+The main view, in this project `HomePage`, will own the top viewmodel `OdinVm` as `@StateObject`. This viewmodel will be passed to other views with `@ObservedObject`.
+
+```plantuml
+@startuml
+
+class OdinVm
+class BlockVm
+class UnitVm
+class CourseVm
+
+struct HomePage {
+    + @StateObject odinVm: OdinVm
+}
+struct UEDetailPage
+struct BlocksView {
+    + @ObservedObject odinVm: OdinVm
+}
+struct UEListView {
+    + @ObservedObject blockVm: BlockVm
+}
+struct BlockRowView
+struct UESummaryView
+struct UEEditView
+struct MarkSlider
+struct CourseView
+struct CourseItemView
+struct CourseEditView
+
+HomePage -up-> OdinVm
+HomePage ..> BlocksView
+HomePage ..> UEListView
+
+BlocksView -up-> OdinVm
+BlocksView ..> BlockRowView
+
+BlockRowView -up-> BlockVm
+
+UEListView -up-> BlockVm
+UEListView ..> UESummaryView
+UEListView ..> UEDetailPage
+
+UESummaryView -up-> UnitVm
+UESummaryView ..> MarkSlider
+
+UEDetailPage -up-> UnitVm
+UEDetailPage ..> CourseView
+UEDetailPage ..> UEEditView
+
+CourseView -up-> CourseVm
+CourseView ..> CourseItemView
+CourseItemView ..> MarkSlider
+
+CourseItemView -up-> CourseVm
+
+UEEditView -up-> UnitVm
+UEEditView ..> CourseEditView
+
+
+@enduml
+```
+
 ## ViewModels
+
+Viewmodels in Swift is composed of two main points:
+- Wrapping
+- Editing
+- Notifications
+
+Even if structures are heavily used and advised in Swift, viewmodels have to be classes in order to use the observable mechanism.
+
+```plantuml
+@startuml
+
+protocol ObservableObject
+
+struct Course
+struct UCAUnit
+struct Block
+
+class OdinVm {
+    + @Published blocks: [BlockVm]
+}
+class BlockVm
+class UnitVm
+class CourseVm
+
+OdinVm .up.|> ObservableObject
+BlockVm .up.|> ObservableObject
+UnitVm .up.|> ObservableObject
+CourseVm .up.|> ObservableObject
+
+OdinVm --> "*" BlockVm
+
+BlockVm --> "*" UnitVm
+BlockVm --> "1" Block
+Block --> "*" UCAUnit
+
+UnitVm --> "*" CourseVm
+UnitVm --> "1" UCAUnit
+UCAUnit --> "*" Course
+CourseVm --> "1" Course
+
+@enduml
+```
+
+### Model wrapping
+
+The first goal of the `Viewmodel` is to wrapped the model and all properties of the model in order to separate the `View` from the `Model` and the `Model` from the `View`.
+
+All viewmodels must conform to the `ObservableObject` protocol. This protocol indicates that the object conforming to it, is attached to a publisher that emits nofitications just before the object has changed.
+
+All properties in the `Viewmodel` must be mark `@Published` to benefiting from the notification system.
+
+### Editing
+
+The editing part will provide a copy of the actuel Viewmodel, this copy will be used by the edition view as binding property. The user will entered in edition mode with `onEditing()` method then the `copy` property will be set with a copy of the actuel model wrapped in the viewmodel. At the end of edition, the viewmodel will copy the model of the copy into himself to update its model with the new model.
+
+The viewmodel provide a `isEditing` property to know the state of the edition.
+
+```plantuml
+@startuml
+
+class CourseVm {
+    + isEditing: Bool
+
+    + copy: CourseVm?
+
+    + onEditing()
+    + onEdited(cancel: Bool)
+}
+
+@enduml
+```
+
+### Notifications
+
+The notification part is to set up the `Observer/Observable` pattern. This pattern allows to send notifications to an unknown object which has subscribed to notifications.
+
+In Swift, we will write this pattern with callbacks.
+
+When the view updates the viewmodel by the properties, the viewmodel changes the property of the wrapped model thanks to the `didSet` of the property. After that, it will fire the `onModelChanged()` to tell to the subscribers that the model has changed.
+
+```plantuml
+@startuml
+
+class BaseVm {
+    - updatedCallbacks: [(BaseVm) -> ()]
+
+    + addUpdatedCallback(callback: (BaseVm) -> ())
+    + onModelChanged()
+}
+
+@enduml
+```
 
 # Getting Started
 
