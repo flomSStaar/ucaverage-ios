@@ -8,7 +8,7 @@
 import Foundation
 import UCAverageModel
 
-public class BlockVM: BaseVM, Identifiable, Equatable {
+public class BlockVM: BaseVM, Identifiable, Hashable {
     
     @Published
     public private(set) var isEditing: Bool = false
@@ -18,11 +18,7 @@ public class BlockVM: BaseVM, Identifiable, Equatable {
     
     public init(withModel model: Block) {
         super.init()
-        
-        // defer allows to call didSet in the constructor
-        defer {
-            self.model = model
-        }
+        self.model = model
     }
     
     @Published
@@ -31,10 +27,11 @@ public class BlockVM: BaseVM, Identifiable, Equatable {
             if self.name != self.model.name {
                 self.name = self.model.name
             }
-            if checkUnitsNotEquals() {
-                self.units = self.model.units.map { createUnitVM(unit: $0) }
+            if !self.model.units.compare(to: self.units.map { $0.model }) {
+                self.units.forEach { $0.unsubscribe(from: self) }
+                self.units = self.model.units.map { createUnitVM(unit: $0)}
             }
-            
+
             onModelChanged()
         }
     }
@@ -55,8 +52,9 @@ public class BlockVM: BaseVM, Identifiable, Equatable {
     @Published
     public var units: [UnitVM] = [] {
         didSet {
-            if checkUnitsNotEquals() {
-                self.model.units = self.units.map { $0.model }
+            let unitModels = self.units.map { $0.model }
+            if !self.model.units.compare(to: unitModels) {
+                self.model.units = unitModels
             }
         }
     }
@@ -68,24 +66,11 @@ public class BlockVM: BaseVM, Identifiable, Equatable {
     
     public func onEdited(isCancelled cancelled: Bool) {
         if (!cancelled) {
-            update()
-        }
-        self.isEditing = false
-    }
-    
-    private func update() {
-        if let copy = self.copy {
-            self.model = copy.model
-        }
-    }
-    
-    private func checkUnitsNotEquals() -> Bool {
-        return self.model.units.count != self.units.count
-        || !self.model.units.allSatisfy { unit in
-            self.units.contains { unitVM in
-                unitVM.model.same(with: unit)
+            if let copy = self.copy {
+                self.model = copy.model
             }
         }
+        self.isEditing = false
     }
     
     private func unitVM_Changed(baseVM: BaseVM) {
@@ -97,8 +82,12 @@ public class BlockVM: BaseVM, Identifiable, Equatable {
     
     private func createUnitVM(unit: UCAUnit) -> UnitVM {
         let unitVM = UnitVM(withModel: unit)
-        unitVM.addUpdatedCallback(callback: unitVM_Changed)
+        unitVM.subscribe(for: self, unitVM_Changed)
         return unitVM
+    }
+    
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
     }
     
     public static func == (lhs: BlockVM, rhs: BlockVM) -> Bool {

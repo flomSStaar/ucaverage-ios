@@ -18,11 +18,7 @@ public class CourseVM: BaseVM, Identifiable, Equatable {
     
     public init(withModel model: Course) {
         super.init()
-        
-        // defer allows to call didSet in the constructor
-        defer {
-            self.model = model
-        }
+        self.model = model
     }
     
     @Published
@@ -79,16 +75,12 @@ public class CourseVM: BaseVM, Identifiable, Equatable {
     
     public func onEdited(isCancelled cancelled: Bool = false) {
         if !cancelled {
-            update()
+            if let copy = self.copy {
+                self.model = copy.model
+            }
         }
         self.copy = nil
         isEditing = false
-    }
-    
-    private func update() {
-        if let copy = self.copy {
-            self.model = copy.model
-        }
     }
 
     public static func == (lhs: CourseVM, rhs: CourseVM) -> Bool {

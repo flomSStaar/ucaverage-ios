@@ -8,7 +8,7 @@
 import Foundation
 import UCAverageModel
 
-public class OdinVM: BaseVM {
+public class OdinVM: BaseVM, Hashable {
     
     public var model: [Block] {
         self.blocks.map { $0.model }
@@ -24,6 +24,7 @@ public class OdinVM: BaseVM {
     }
     
     public func load(_ blocks: [Block]) {
+        self.blocks.forEach { $0.unsubscribe(from: self) }
         self.blocks = blocks.map { createBlockVM(with: $0) }
     }
     
@@ -54,7 +55,15 @@ public class OdinVM: BaseVM {
     
     private func createBlockVM(with model: Block) -> BlockVM {
         let blockVM = BlockVM(withModel: model)
-        blockVM.addUpdatedCallback(callback: blockVM_Changed)
+        blockVM.subscribe(for: self, blockVM_Changed)
         return blockVM
+    }
+    
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine("odinvm")
+    }
+    
+    public static func == (lhs: OdinVM, rhs: OdinVM) -> Bool {
+        true
     }
 }

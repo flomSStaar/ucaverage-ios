@@ -8,7 +8,7 @@
 import Foundation
 import UCAverageModel
 
-public class UnitVM: BaseVM, Identifiable, Equatable {
+public class UnitVM: BaseVM, Identifiable, Hashable {
     
     @Published
     //TODO remettre le private(set)
@@ -19,11 +19,7 @@ public class UnitVM: BaseVM, Identifiable, Equatable {
     
     public init(withModel model: UCAUnit) {
         super.init()
-        
-        // defer allows to call didSet in the constructor
-        defer {
-            self.model = model
-        }
+        self.model = model
     }
     
     @Published
@@ -36,11 +32,11 @@ public class UnitVM: BaseVM, Identifiable, Equatable {
                 self.coef = self.model.coef
             }
             if !self.model.courses.compare(to: self.courses.map { $0.model }) {
+                // unsubscribe previous course viewmodels
+                self.courses.forEach { course in course.unsubscribe(from: self)}
+                // create new viewmodels corresponding to the new courses
                 self.courses = self.model.courses.map { createCourseVM(course: $0) }
             }
-            //            if checkCoursesNotEquals() {
-            //                self.courses = self.model.courses.map { createCourseVM(course: $0) }
-            //            }
             
             onModelChanged()
         }
@@ -75,9 +71,6 @@ public class UnitVM: BaseVM, Identifiable, Equatable {
             if !self.model.courses.compare(to: courseModels) {
                 self.model.courses = courseModels
             }
-            //            if checkCoursesNotEquals() {
-            //                self.model.courses = self.courses.map { $0.model }
-            //            }
         }
     }
     
@@ -89,16 +82,12 @@ public class UnitVM: BaseVM, Identifiable, Equatable {
     
     public func onEdited(isCancelled cancelled: Bool = false) {
         if !cancelled {
-            update()
+            if let copy = self.copy {
+                self.model = copy.model
+            }
         }
         self.copy = nil
         isEditing = false
-    }
-    
-    private func update() {
-        if let copy = self.copy {
-            self.model = copy.model
-        }
     }
     
     public func addCourse(withName name: String, andCoef coef: Int, andMark mark: Float) {
@@ -107,18 +96,6 @@ public class UnitVM: BaseVM, Identifiable, Equatable {
     
     public func removeCourse(withId id: UUID) {
         self.model.removeCourse(withId: id)
-    }
-    
-    private func checkCoursesNotEquals() -> Bool {
-        return self.model.courses.count != self.courses.count
-        || !self.model.courses.allSatisfy({ course in
-            self.courses.contains { courseVM in
-                courseVM.model.id == course.id
-                && courseVM.model.name == course.name
-                && courseVM.model.coef == course.coef
-                && courseVM.model.mark == course.mark
-            }
-        })
     }
     
     private func courseVM_Changed(baseVM: BaseVM) {
@@ -130,8 +107,12 @@ public class UnitVM: BaseVM, Identifiable, Equatable {
     
     private func createCourseVM(course: Course) -> CourseVM {
         let courseVM = CourseVM(withModel: course)
-        courseVM.addUpdatedCallback(callback: courseVM_Changed)
+        courseVM.subscribe(for: self, courseVM_Changed)
         return courseVM
+    }
+    
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
     }
     
     public static func == (lhs: UnitVM, rhs: UnitVM) -> Bool {
