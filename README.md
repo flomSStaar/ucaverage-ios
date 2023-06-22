@@ -38,7 +38,7 @@ You can find the instructions [here](CONSIGNES.md).
 - [X] Pages
 - [X] Custom Views
 - [X] Bindings (State, Binding, StateObject, ObservedObject)
-- [ ] Notifications with `Hashable`
+- [X] Notifications with `Hashable`
 - [ ] Generic Viewmodel for editing
 
 # MVVM Architecture
